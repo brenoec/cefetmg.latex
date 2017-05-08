@@ -1,32 +1,33 @@
-# Definição de variáveis
-SOURCE      = meu-trabalho
+
+# Variables
+SOURCE      = main
 LATEXMK     = latexmk
 GHOSTSCRIPT = gs
 PDFVIEWER   = evince
 
-# Executa o processo de limpeza, compilação e abertura do arquivo
+# Clean, compile and open PDF
 all: clean compile open
 
-# Compila o código fonte
+# Compile source
 compile:
-	@echo "Compilando arquivos..."
-	$(LATEXMK) -pdf -synctex=1 $(SOURCE).tex
-	@echo "Pronto."
+	@echo "Compiling..."
+	@$(LATEXMK) -pdf -synctex=1 -quiet -c $(SOURCE).tex
+	@echo "Done"
 
-# Comprime o arquivo PDF gerado
+# Compressing PDF file
 compress:
-	@echo "Comprimindo o arquivo PDF..."
+	@echo "Compressing PDF..."
 	@$(GHOSTSCRIPT) -q -dNOPAUSE -dBATCH -dSAFER \
 		-sDEVICE=pdfwrite \
 		-dEmbedAllFonts=true \
 		-dSubsetFonts=true \
-		-sOutputFile=$(SOURCE)-compactado.pdf \
+		-sOutputFile=compressed-$(SOURCE).pdf \
 		$(SOURCE).pdf
-	@echo "Pronto."
+	@echo "Done"
 
-# Remove arquivos temporários
+# Clean temporary files
 clean:
-	@echo "Limpando arquivos temporarios..."
+	@echo "Cleanning project folder..."
 	@find . -type f -iname "*-blx.*" -delete
 	@find . -type f -iname "*-converted-to.*" -delete
 	@find . -type f -iname "*.*~" -delete
@@ -66,10 +67,10 @@ clean:
 	@find . -type f -iname "*.synctex*" -delete
 	@find . -type f -iname "*.toc" -delete
 	@find . -type f -iname "*.vrb" -delete
-	@echo "Pronto."
+	@echo "Done"
 
-# Visualiza o arquivo PDF gerado
+# Open PDF
 open:
-	@echo "Abrindo o arquivo PDF..."
+	@echo "Openning PDF..."
 	@$(PDFVIEWER) $(SOURCE).pdf &
-	@echo "Pronto."
+	@echo "Done"
