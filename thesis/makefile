@@ -6,14 +6,13 @@ GHOSTSCRIPT = gs
 PDFVIEWER   = evince
 
 # Clean, compile and open PDF
-all: start clean compile open
+all: clean compile open
 
 # Compile source
 compile:
 	@echo "Compiling..."
 	@$(LATEXMK) -pdf -synctex=1 -quiet -c $(SOURCE).tex
 	@echo "Done"
-	@echo ""
 
 # Compressing PDF file
 compress:
@@ -25,7 +24,6 @@ compress:
 		-sOutputFile=compressed-$(SOURCE).pdf \
 		$(SOURCE).pdf
 	@echo "Done"
-	@echo ""
 
 # Clean temporary files
 clean:
@@ -70,14 +68,9 @@ clean:
 	@find . -type f -iname "*.toc" -delete
 	@find . -type f -iname "*.vrb" -delete
 	@echo "Done"
-	@echo ""
-
-start:
-	@echo ""
 
 # Open PDF
 open:
 	@echo "Openning PDF..."
 	@$(PDFVIEWER) $(SOURCE).pdf &
 	@echo "Done"
-	@echo ""
