@@ -3,122 +3,183 @@
 %
 
 \chapter{Introdução}
-\label{chap:Introduction}
+\label{chap:Introdução}
 
-Edite e coloque aqui o seu texto introdutório do artigo.
+A Engenharia de Software é uma área incipiente do conhecimento, com menos
+de um século de história. Consiste em uma disciplina que trata de questões
+políticas, culturais, técnicas e tecnológicas dentro de organizações.
+Incorporou, primeiramente, interesse por processos, modelos de processos,
+planejamento e gestão de projetos; e, posteriormente, pela qualidade de
+sistemas de software \cite{Wazlawick2013:Engenharia}.
 
-A introdução deverá apresentar uma visão de conjunto do trabalho a ser
-realizado, com o apoio da literatura, situando-o no contexto do estado da arte
-da área científica específica, sua relevância no contexto da área inserida e sua
-importância específica para o avanço do conhecimento.
+\citeonline{Dijkstra:1972:HumbleProgrammer} tratou do fenômeno da crise do
+software, onde relatou dificuldade de agentes interessados na Engenharia de
+Software em cumprir prazos, cumprir orçamentos, entregar produtos de boa
+qualidade e, por fim, desenvolver, manter e evoluir sistemas de software.
 
-Deve ser dado destaque às contribuições efetivas do trabalho e sua relevância
-para a área de pesquisa.
-
-É uma boa prática iniciar cada novo capítulo com uma breve texto introdutório
-(tipicamente, dois ou três parágrafos) que deve deixar claro o quê será
-discutido no capítulo, bem como a organização do capítulo. Também servirá ao
-propósito de "amarrar"{} ou "alinhavar"{} o conteúdo deste capítulo com o
-conteúdo do capítulo imediatamente anterior - neste caso, contando com o texto
-da seção de "Considerações finais"{} do capítulo anterior.
-
-\section{Leia esta seção antes de começar}
-\label{sec:antesleiame}
-
-Este documento é um \emph{template} \LaTeX{} que foi concebido, primariamente,
-para ser utilizado na redação de teses de doutorado, dissertações de mestrado,
-projetos de qualificação tanto de mestrado quanto de doutorado, escritos em
-português brasileiro (eventualmente, com partes em inglês) e em conformidade
-com as normas da ABNT.
-
-Não obstante, ele também poderá ser utilizado, com ligeiras adaptações para a
-redação de outros trabalhos acadêmicos monográficos - \emph{e.g.}, trabalhos de
-conclusão de curso de graduação ou de especialização \emph{lato sensu}.
-
-Para a produção deste \emph{template} foi necessário adaptar o arquivo
-{\ttfamily abntex2.cls}. Assim, foi produzido o
-arquivo {\ttfamily abntex2-cefetmg.cls} que define o \verb|documentclass|
-específico para o CEFET-MG.
-
-Antes de começar a escrever o seu trabalho acadêmico utilizando este
-\emph{template}, é bom saber que há dois arquivos que você precisará editar
-para que a capa e a folha de rosto de seu trabalho sejam geradas. São eles os
-arquivos {\ttfamily capa.tex} e {\ttfamily folhaRosto.tex}, ambos no diretório
-{\ttfamily ./01-elementos-pre-textuais}. No arquivo {\ttfamily capa.tex} você
-deverá informar o seu nome, título do trabalho acadêmico, se o documento será
-uma tese de doutorado ou dissertação de mestrado ou projeto de qualificação,
-nome de seu(s) orientador(es), e outras informações necessárias. Já o arquivo
-{\ttfamily folhaRosto.tex} contém apenas o texto padrão - definido pelo Programa
-de Pós-graduação - estabelecendo que este documento é um requisito parcial para
-a obtenção do título pretendido. Neste arquivo, você deverá apenas comentar as
-linhas que não se aplicam ao seu tipo de trabalho acadêmico. Ambos os arquivos
-são auto-explicativos.
-
-A conversão automática de acentos proporcionada pela codificação UTF8 no
-\LaTeX{} funciona bem, para o corpo do texto. E apenas para isso. A razão é que
-aquilo que é digitado no corpo do texto usualmente não sofre conversão para
-maiúsculas/minúsculas ou vice-versa.
-
-Todavia, há vários elementos do documento que sofrem conversão
-minúsculas/maiúsculas - por exemplo o conteúdo dos arquivos {\ttfamily .bib},
-{\ttfamily capa.tex} e {\ttfamily folhaRosto.tex}, além de títulos de capítulos,
-seções, etc.. Para estes elementos, pelo menos, não acentue diretamente as
-palavras, use os comandos relacionados na \autoref{fig:acentos-latex}.
+As atividades de desenvolvimento, evolução e manutenção de software têm natureza
+cognitiva \cite{Letovsky1987:Cognitive}, uma vez que se faz necessário aplicar
+conhecimentos --- técnicos, tecnológicos, entre outros --- para mapear a
+concepção de um sistema de software no sistema de fato
+\cite{Brooks1983:TheoryComprehension}. Outra forma de se dizer isto é que 
+existem camadas intermediárias entre desejos e necessidades e os sistesmas
+de software que possivelmente as sanam (Figura \ref{fig:CamadasAbstraçãoSoftware}).
 
 \begin{figure}[!htb]
     \centering
-    \caption{Comandos para acentuação no \LaTeX}
-    \includegraphics[width=0.8\textwidth]{./4....figures/acentos-latex}
-    \fonte{\href{http://en.wikibooks.org/wiki/LaTeX/Special_Characters}{http://en.wikibooks.org/wiki/LaTeX/Special\underline{ }Characters}}
-    \label{fig:acentos-latex}
+    \caption{Camadas entre desejos e necessidades e os sistemas de software}
+    \includegraphics[width=1\textwidth]{../shared files/figures/software abstraction layers/main.pdf}
+    \fonte{do autor, 2017}
+    \label{fig:CamadasAbstraçãoSoftware}
 \end{figure}
 
-Para a compilação de arquivos \TeX{} ou \LaTeX{} veja os comandos apresentados
-na \autoref{fig:comanCompilaTex}.
+A quinta Lei de Lehman \cite{Lehman1980:Laws}, a lei da conservação da
+familiaridade: complexidade percebida, determina que a taxa de crescimento de
+um sistema é limitada pela quantidade de informação absorvida coletiva e
+individualmente \cite{Wazlawick2013:Engenharia}.
+
+De acordo com \citeonline[p.~94]{Crockford2008:JavaScriptGoodParts}:
+
+\begin{citacao}
+\textit{Computer programs are the most complex things that humans make. Programs
+are made up of a huge number of parts, expressed as functions, statements, and
+expressions that are arranged in sequences that must be virtually free of error.
+The runtime behavior has little resemblance to the program that implements it.
+Software is usually expected to be modified over the course of its productive
+life. The process of converting one correct program into a different correct
+program is extremely challenging.}
+\end{citacao}
+
+Fica caracterizado o problema que é conhecer e alterar as propriedades dos
+sistemas de software corretamente; portanto.
+
+Diversas abordagens surgiram ao longo dos anos para tratar tais questões, de
+modo que ferramentas, metodologias, processos e modelos foram propostos por
+praticantes e estudiosos. Formou-se então, entre outras campos de pesquisa nas
+áreas de Cognição, Compreensão e Visualização de Software.
+
+O campo de pesquisa referente à Visualização de Software recebeu considerável
+atenção de pesquisadores nos últimos 30 anos, onde uma parcela das ferramentas
+desenvolvidas foram baseadas em grafos \cite{Storey2006:Theories} e em grafos
+hierárquicos \cite{Jahnke2002:Visualizations}.
+
+Grafos hierárquicos atendem ao requisito funcional de abstração, comum entre os
+trabalhos da área. Tal requisito considera que pessoas interessadas trabalham
+com diferentes níveis de abstração, de forma a reduzir a quantidade de
+informação através do agrupamento de elementos \cite{Kienle2007:Requirements}.
+
+Redes complexas diferem dos sistemas dinâmicos tradicionais, pois não há a
+necessidade de componentes se ligarem uns aos outros de forma homogênea e
+regular \cite{Sayama:2015:Complex}.
+\citeonline{Weifeng:2011:Complex} cita a aplicação da análise de redes complexas
+em sistemas de software para sua caracterização, medição e modelagem de
+crescimento, bem como aplicações nas práticas de Engenharia de Software.
+
+%Os trabalhos de \citeonline{Barabasi:19999:EmergenceScaling} e \citeonline{Strogatz:1998:Networks}
+%impulsionaram a teoria de redes complexas às mais diversas áreas do
+%conhecimento, tal como Biologia, Medicina, Ciências Sociais, Engenharias ---
+%Engenharia de Software inclusa ---, entre tantas outras
+%\cite{Barabasi:2003:Linked}, \cite{Borner:2007:Network}, \cite{Barabasi:2016:Network}.
+
+A estrutura de um software em tempo de execução difere de sua estrutura
+estática \cite{Crockford2008:JavaScriptGoodParts}.
+Nas palavras de \citeonline[p.~22]{Gamma1995:Design}:
+
+\begin{citacao}
+\textit{An object-oriented program's run-time structure often bears little
+resemblance to its code structure. The code structure is frozen at compile-time;
+it consists of classes in fixed inheritance relationships. A program's run-time
+structure consists of rapidly changing networks of communicating objects. In
+fact, the two structures are largely independent. Trying to understand one from
+the other is like trying to understand the dynamism of living ecosystems from
+the static taxonomy of plants and animals, and vice versa.}
+\end{citacao}
+
+A análise da estrutura dinâmica de um software permite o estudo de seu
+comportamento e de seu fluxo de dados, já que certas propriedades desses
+sistemas de software somente são conhecidas durante sua execução. A análise da
+estrutura estática de um software, por sua vez, permite estudar representações
+do código fonte e de certas relações entre seus componentes.
+
+Relações entre as áreas do conhecimento da Engenharia de Software (ES),
+Compreensão de Software (CS) e Visualização de Software (VS), bem como o emprego
+de grafos hierárquicos e redes complexas (RC) e a análise da estruturas
+estáticas (EE) e dinâmicas (ED) de sistesmas de software estão ilustradas na
+Figura \ref{fig:RelaçãoConhecimentoTrabalho}.
 
 \begin{figure}[!htb]
     \centering
-    \caption{Comandos para compilação de arquivos \TeX{} ou \LaTeX}
-    \includegraphics[width=0.8\textwidth]{./4....figures/compilacao-tex}
-    \fonte{\href{http://en.wikibooks.org/wiki/LaTeX/Basics}{http://en.wikibooks.org/wiki/LaTeX/Basics}}
-    \label{fig:comanCompilaTex}
+    \caption{Relações entre as áreas do conhecimento e o trabalho da dissertação}
+    \includegraphics[width=1\textwidth]{../shared files/figures/research area/main.pdf}
+    \fonte{do autor, 2017}
+    \label{fig:RelaçãoConhecimentoTrabalho}
 \end{figure}
 
-A compilação para gerar um arquivo no formato pdf, incluindo corretamente as
-referências bibliográficas, deve ser realizada em quatro passos:
+\section{Objetivos}
+\label{sec:Objetivos}
 
-\begin{itemize}
-    \item \textbf{pdflatex} \verb|meuTrabalhoAcademico.tex| -> gera um pdf, porém sem as referências, apenas indicando-as
-    \item \textbf{bibtex} \verb|meuTrabalhoAcademico.tex|   -> varre o arquivo myrefs.bib e busca pelas referências utilizadas
-    \item \textbf{pdflatex} \verb|meuTrabalhoAcademico.tex| -> insere as referências e chamadas nos locais apropriados
-    \item \textbf{pdflatex} \verb|meuTrabalhoAcademico.tex| -> faz a compilação final, verificando tudo
-\end{itemize}
+Esta dissertação tem como objetivo geral propor um modelo baseado em grafos
+hierárquicos para representar a estrutura de execução de sistemas de software
+que exponha suas propriedades.
+Elementos da rede são componentes de tais sistemas em determinada granularidade,
+homogênea ou não.
 
-Alternativamente, poderá ser utilizado o comando \verb|makefile|, disponível na
-mesma pasta onde está o arquivo principal \verb|meuTrabalhoAcademico.tex|, que
-faz exatamente o mesmo que os quatro comandos supramencionados. No entanto
-atente para o fato de que, se você alterar o nome do arquivo
-\verb|meuTrabalhoAcademico.tex|, deverá também editar o arquivo \verb|makefile|
-para alterá-lo do mesmo modo.
+\subsection{Perguntas de Pesquisa}
+\label{subsec:PerguntasPesquisa}
 
-Por fim, caso observe algum "\textit{bug}"{} ou qualquer outro tipo de falha ou
-mal comportamento neste modelo, comunique-nos para que possamos tentar
-corrigi-los em futuras atualizações deste modelo. Será melhor ainda se ao
-apontar uma falha ela venha acompanhada de uma proposta de solução.
+Conduziremos o projeto de pesquisa de modo a responder às seguintes perguntas de
+pesquisa:
 
-\section{Justificativa}
-\label{sec:Justification}
+\noindent
+\texttt{\textit{PP \#1 -- }}
+Que propriedades de sistemas de software o modelo é capaz de expor?
 
-Blá blá blá ....
+\noindent
+\texttt{\textit{PP \#2 -- }}
+Quais são as aplicações e limitações do modelo?
 
-\section{Motivação}
-\label{sec:Motivation}
+\subsection{Objetivos Específicos}
+\label{subsec:ObjetivosEspecíficos}
 
-Blá blá blá ....
+Os objetivos específicos desta dissertação serão separados em dois grupos, que
+tratarão dos objetivos específicos referentes à proposta do modelo e sua
+implementação, haja vista distinção entre o campo teórico e prático.
+
+Quanto aos objetivos específicos referentes à proposta do modelo, determinar
+dados de entrada, transformações sobre tais dados e construção do modelo,
+operações sobre o modelo, análise sobre o modelo, resultados e analise dos
+resultados.
+
+Quanto aos objetivos específicos referentes à implementação do modelo,
+determinar desafios técnicos e tecnológicos, requisitos da solução, aplicações e
+limitações.
 
 \section{Organização do trabalho}
-\label{sec:ThesisOrganization}
+\label{sec:OrganizaçãoTrabalho}
 
-Normalmente ao final da introdução é apresentada, em um ou dois parágrafos
-curtos, a organização do restante do trabalho acadêmico. Deve-se dizer o quê
-será apresentado em cada um dos demais capítulos.
+No Capítulo 2 apresentaremos os trabalhos relacionados: ferramentas, metodologia
+e modelos utilizados para apoiar profissionais nas atividades de 
+desenvolvimento, manutenção e evolução de software. Serão apresentadas as
+ferramentas comumente utilizadas --- como \textit{loggers}, depuradores e
+\textit{profilers} ---, trabalhos inseridos nas áreas de Cognição, Compreensão
+e Visualização de Software, bem como trabalhos onde a análise dos sistemas de
+software é feita por meio da Teoria de Redes Complexas.
+
+No Capítulo 3 abordaremos a fundamentação teórica, onde constará o conhecimento
+base para a compreensão deste trabalho. Discutiremos brevemente a história da
+Engenharia de Software. Em seguida, visitaremos alguns conceitos da Teoria de
+Grafos e Redes. Também trataremos da cognição, compreensão e visualização de
+software.
+
+No Capítulo 4 discutiremos quais são os requisitos do modelo proposto, bem como
+quais critérios utilizar para verificá-lo e validá-lo. Explanaremos o modelo de
+estrutura de software em execução através de redes hierárquicas de forma
+discursiva e formal.
+
+No Capítulo 5 analisaremos e discutiremos o modelo proposto quanto às suas
+aplicações, limitações e demais características. Discutiremos ainda aspectos
+sobre possível implementação do método em uma ferramenta de visualização de
+software.
+
+No Capítulo 6 apresentaremos as conclusões desta dissertação, enunciaremos
+possibilidades de trabalhos futuros e as considerações finais.

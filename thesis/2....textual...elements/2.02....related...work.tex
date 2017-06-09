@@ -5,6 +5,181 @@
 \chapter{Trabalhos Relacionados}
 \label{chap:RelatedWork}
 
-Cada capítulo deve conter uma pequena introdução (tipicamente, um ou dois
-parágrafos), em seção não numerada, que deve deixar claro o objetivo e o que
-será discutido no capítulo, bem como a organização do capítulo.
+Neste capítulo serão apresentados modelos, ferramentas e metodologia utilizados
+para apoiar profissionais nas atividades de desenvolvimento, manutenção e
+evolução de software. Serão apresentadas as ferramentas comumente utilizadas ---
+como \textit{loggers}, depuradores e \textit{profilers} ---, trabalhos inseridos
+nas áreas de Cognição, Compreensão e Visualização de Software, bem como
+trabalhos onde a análise dos sistemas de software é feita por meio da Teoria de
+Redes Complexas.
+
+\section{\textit{Loggers}, Depuradores e \textit{Profilers}}
+\label{sec:Loggers}
+
+\textit{Loggers} são ferramentas que monitoram a execução de sistemas de
+software através de registros ou entradas de \textit{log}.
+Os registros podem estar dispostos em um formato específico ---
+\textit{extensible markup language} (XML), \textit{JavaScript Object Notation} (JSON),
+entre outros --- ou constar como texto informativo.
+Podem ainda estar associados a níveis distintos --- \textit{information},
+\textit{warning}, \textit{error}, entre outros.
+As informações podem ser veiculadas a diferentes tipos de mídia, como arquivos
+texto, arquivos binários, bases de dados relacionais, não relacionais ou
+armazenadas em memória.
+
+A análise de um conjunto de registros usualmente se dá por cálculos estatísticos
+e por meio de mecanismos de buscas convencionais na mídia nos quais eles foram
+veiculados.
+Tais ferramentas possuem diferentes métodos de entradas. Seus recursos podem ser
+acessados através de um protocolo específico, de uma
+\textit{application program interface} (API) ou de funções e métodos.
+São exemplos de \textit{loggers}:
+SmartInspect\footnote{Disponível em: \href{http://www.gurock.com/smartinspect/}{http://www.gurock.com/smartinspect/}. Acessado em 18/05/2017.},
+Logentries\footnote{Disponível em: \href{http://logentries.com/}{http://logentries.com/}. Acessado em 18/05/2017.} e
+Logentries\footnote{Disponível em: \href{http://sentry.io/welcome/}{http://sentry.io/welcome/}. Acessado em 18/05/2017.}.
+
+%\section{Depuradores}
+%\label{sec:Debuggers}
+
+Depuradores são ferramentas que possibilitam avaliar a execução de sistemas de
+software. Tais ferramentas permitem definir pontos de parada ---
+\textit{breakpoints}, \textit{watchpoints} e \textit{catchpoints} ---,
+condicionais ou não, nos quais o depurador pausa a execução. Uma vez pausada a
+execução do sistema, pode-se executar até o próximo ponto de parada, próxima
+expressão, ou adentrar uma definição --- como um método ou função. Permitem ainda
+avaliar determinadas expressões e monitorar certos valores de variáveis do
+sistema.
+
+Alguns depuradores implementam funcionalidades que permitem a depuração de:
+sistemas já em execução; software em execução em máquina remota; programas
+\textit{multithread}. Outras funcionalidades e técnicas de depuração são
+disponibilizadas por depuradores e desenvolvidas por pesquisadores.
+\citeonline{Engblom:ReverseDebuggin:2012} revisou o estado da arte referente à
+depuração reversa, que consiste em interromper a execução do software ao se
+constatar uma falha e desfazer o histórico de execuções para se avaliar o que a
+causou.
+São exemplos de depuradores \textit{The GNU Project Debugger} (GDB)
+\footnote{Disponível em: \href{http://www.gnu.org/s/gdb/}{http://www.gnu.org/s/gdb/}. Acessado em 18/05/2017.} e 
+\textit{The Java Debugger} (JDB)
+\footnote{Verifique: \href{http://www.tutorialspoint.com/jdb/}{http://www.tutorialspoint.com/jdb/}. Acessado em 18/05/2017.}.
+
+%\section{\textit{Profilers}}
+%\label{sec:Profilers}
+
+\textit{Profilers} são ferramentar utilizadas para extrair dados da execução de
+sistemas de software através de técnicas de análise estática e dinâmica.
+\citeonline{Thiel:2006:Profiling} analisa 8 ferramentas e discorre sobre
+instrumentação em tempo de compilação, ferramentas de amostragem, instrumentação
+através de contadores de hardware, instrumentação binária, dentre outras
+técnicas.
+São exemplos de ferramentas de \textit{profiling} Gprof\footnote{Verifique: \href{https://sourceware.org/binutils/docs/gprof/}{https://sourceware.org/binutils/docs/gprof/}. Acessado em 20/05/2017}
+e Dtrace\footnote{Verifique: \href{http://dtrace.org/blogs/about/}{http://dtrace.org/blogs/about/}. Acessado em 20/05/2017}.
+
+\citeonline{Henderson:2017:Software} relatou as principais práticas de
+Engenharia de Software praticadas pela empresa Google\footnote{Disponível em:
+\href{http://www.google.com/}{http://www.google.com/}. Acessado em 20/05/2012}.
+Na seção referente às ferramentas de depuração e \textit{profiling}, Henderson
+constata que os servidores da empresa possuem bibliotecas que disponibilizam
+determindas ferramentas de análise. No caso de falha, informações da execução do
+serviço --- amostradas, em alguns casos --- são salvas em arquivos de
+\textit{log}. Menciona ainda sobre uma interface web para depurar 
+\textit{remote procedure calls} (RCPs), alterar argumentos de linha de comando,
+avaliar uso de recursos computacionais, \textit{profiling}, entre outras coisas.
+Discorre brevemente, por fim, da facilidade de se depurar sistemas de software
+na empresa e o quão raras são as ocasiões em que se mostra necessário utilizar
+um depurador convencional como o GDB.
+
+O modelo proposto neste trabalho irá registrar trilhas de execução em
+\textit{log}. A instrumentação do sistema de software estudado pode ser
+contínua ou desabilitada --- até mesmo amostrada. A integração do modelo com
+a execução do sistema em tempo real não foi considerada, embora tecnicamente
+possível. Isso viabilizaria, por exemplo, uma técnica de depuração através da
+rede do software.
+
+\section{Cognição, Compreensão e Visualização de Software}
+\label{sec:SoftwareCognition}
+
+\citeonline{Pacione:2004:Software} teorizou um modelo com três dimensões de
+abstração.
+A primeira dimensão trata da granularidade dos elementos de tal
+modelo: em um nível de menor granularidade são consideradas as instruções e
+expressões; componentes e pacotes representam um nível maior de granularidade.
+A segunda dimensão trata das diversas facetas pelos quais os componentes podem
+ser avaliados, como por exemplo a análise da estrutura do software, de seu 
+comportamento ou do fluxo de dados.
+A terceira dimensão trata do tipo de análise empregada, se estática ou dinâmica.
+\citeonline{Pacione:2004:NovelModel} criou um modelo com base no modelo
+teorizado por \citeonline{Pacione:2004:Software}.
+
+No modelo proposto neste trabalho a granularidade selecionada para análise não
+necessariamente é homogênea: enquanto parte do sistema é considerada em nível
+maior granularidade, outras partes da rede podem ser expostas de forma
+detalhada. Cada componente da rede remete a um ou mais elementos da estrutura
+estática do software, enquanto que as ligações revelam as interações entre esses
+componentes durante a execução do sistema. O fluxo de dados pode ser
+parcialmente observado ao passo em que essas interações ocorrem, uma vez que o
+modelo, a priori, não provê mecanismos de monitorar valores.
+
+\citeonline{Hendrix:2002:ControlStructureDiagrams} propos diagramas de
+estruturas de controle renderizados juntamente com o código-fonte no editor de
+texto e validou a eficácia de tais diagramas através de dois experimentos, com
+38 e 50 estudantes.
+Os estudantes foram separados em dois grupos --- controle e experimental --- com
+o mesmo número de indivíduos, para cada experimento.
+A análise estatística rejeitou fortemente a hipótese nula do estudo que
+considera não relevante que diagramas de estruturas de controle afetam
+positivamente a performance dos entrevistados em responderem perguntas.
+
+O destaque visual de certas informações pode auxiliar na compreensão da rede.
+
+%\section{Visualização de Software}
+%\label{sec:SoftwareVisualization}
+
+%\section{Redes Complexas}
+%\label{sec:ComplexNetworks}
+
+\section{Análise de Software por Redes Complexas}
+\label{sec:SoftwareComplexNetworks}
+
+\citeonline{Valverde:2002:Complex} foram pioneiros ao introduzir a Teoria de
+Redes Complexas à análise de sistemas de software, pois abstrairam um diagrama
+de classes e modelaram uma rede com ligações não direcionadas entre classes e
+métodos. O trabalho analisou 2 sistemas de software e constatou que ambos
+apresentam propriedades de redes de mundo pequeno e de redes livre de escala.
+
+\citeonline{Myers:2003:Complex} argumentou que a natureza da relação entre
+componentes altera o fluxo de dados e é, portanto, significante, de modo que a
+rede modelada deve conter ligações direcionadas entre seus nós. Este trabalho
+estudou 3 sistemas orientados a objetos e outros 3 sistemas procedurais através
+de grafos de colaboração obtidos por análise estática. Todos os sistemas de
+software apresentaram características de redes de mundo pequeno e livres de
+escala, despeito de suas diferenças em aspectos tecnológicos e metodológicos.
+
+\citeonline{Valverde:2003:Complex} consideraram uma base de diagramas de classes
+de 23 sistemas de software escritos em Java e C++. Modelaram redes com ligações
+direcionadas a partir de tal base e observaram que além de tais redes
+apresentarem estrutura de redes de mundo pequeno e redes livre de escala,
+compartilham modularidade e características hierárquicas.
+
+Certos autores estudaram componentes de sistemas de software em diferentes
+níveis de granularidade.
+
+\citeonline{Moura:2003:Signatures} analisou rede formada por cabeçalhos de
+sistemas escritos em \texttt{C} e \texttt{C++} e verificou que tais redes
+possuem características de rede de mundo pequeno e livre de escala.
+Apontam ainda que o crescimento do sistema é o processo que faz com que a rede
+seja livre de escala --- processo de ligação preferencial, conforme destacado
+por \citeonline{Barabasi:1999:EmergenceScaling} ---, enquanto que o processo de
+manutenção perfectiva é responsável pela configuração da rede de mundo pequeno.
+
+\citeonline{LaBelle:2004:PackageNetworks} estudaram a rede de dependências entre
+pacotes dos repositórios Debian GNU/Linux e FreeBSD Ports Collection e
+identificou características de rede de mundo pequeno e livre de escala.
+
+% EVOLUÇÃO
+
+% METRICAS
+
+% POO & POWERLAW
+
+% TRABALHOS RECENTES
