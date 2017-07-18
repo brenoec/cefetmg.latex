@@ -36,6 +36,8 @@
 \RequirePackage{makeidx}                                % Produzir índice remissivo de palavras
 \RequirePackage{chngcntr}
 
+\counterwithin{figure}{chapter}
+
 % -----------------------------------------------------------------------------
 % Configurações gerais
 % -----------------------------------------------------------------------------
@@ -64,7 +66,7 @@
 }
 
 % Define a numeração das equações de forma sequencial
-\counterwithout{equation}{chapter}
+% \counterwithout{equation}{chapter}
 
 % -----------------------------------------------------------------------------
 % Comandos de dados

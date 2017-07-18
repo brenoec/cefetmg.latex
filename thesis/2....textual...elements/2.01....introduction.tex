@@ -12,10 +12,10 @@ Incorporou, primeiramente, interesse por processos, modelos de processos,
 planejamento e gestão de projetos; e, posteriormente, pela qualidade de
 sistemas de software \cite{Wazlawick2013:Engenharia}.
 
-\citeonline{Dijkstra:1972:HumbleProgrammer} tratou do fenômeno da crise do
-software, onde relatou dificuldade de agentes interessados na Engenharia de
-Software em cumprir prazos, cumprir orçamentos, entregar produtos de boa
-qualidade e, por fim, desenvolver, manter e evoluir sistemas de software.
+\citeonline{Dijkstra:1972:HumbleProgrammer} discursou sobre o fenômeno da crise
+do software, onde relatou dificuldade de agentes interessados na Engenharia de
+Software em cumprir prazos e orçamentos, entregar produtos de boa qualidade e,
+por fim, desenvolver, manter e evoluir sistemas de software.
 
 As atividades de desenvolvimento, evolução e manutenção de software têm natureza
 cognitiva \cite{Letovsky1987:Cognitive}, uma vez que se faz necessário aplicar
@@ -52,7 +52,6 @@ program is extremely challenging.}
 
 Fica caracterizado o problema que é conhecer e alterar as propriedades dos
 sistemas de software corretamente; portanto.
-
 Diversas abordagens surgiram ao longo dos anos para tratar tais questões, de
 modo que ferramentas, metodologias, processos e modelos foram propostos por
 praticantes e estudiosos. Formou-se então, entre outras campos de pesquisa nas
@@ -96,10 +95,10 @@ the static taxonomy of plants and animals, and vice versa.}
 \end{citacao}
 
 A análise da estrutura dinâmica de um software permite o estudo de seu
-comportamento e de seu fluxo de dados, já que certas propriedades desses
-sistemas de software somente são conhecidas durante sua execução. A análise da
-estrutura estática de um software, por sua vez, permite estudar representações
-do código fonte e de certas relações entre seus componentes.
+comportamento e de seu fluxo de dados, já que certas propriedades de sistemas de
+software somente são conhecidas durante sua execução. A análise da estrutura
+estática de um software, por sua vez, permite estudar representações do código
+fonte e de certas relações entre seus componentes.
 
 Relações entre as áreas do conhecimento da Engenharia de Software (ES),
 Compreensão de Software (CS) e Visualização de Software (VS), bem como o emprego
@@ -118,25 +117,31 @@ Figura \ref{fig:RelaçãoConhecimentoTrabalho}.
 \section{Objetivos}
 \label{sec:Objetivos}
 
-Esta dissertação tem como objetivo geral propor um modelo baseado em grafos
-hierárquicos para representar a estrutura de execução de sistemas de software
-que exponha suas propriedades.
-Elementos da rede são componentes de tais sistemas em determinada granularidade,
-homogênea ou não.
+Esta dissertação tem como objetivo geral modelar a execução de sistemas de
+software através de redes hierárquicas, heterogêneas e navegáveis em múltiplas
+escalas, com ligações e componentes topológicos. O modelo será construído a
+partir da redução espacial e temporal de trilhas instrumentadas durante a
+execução do sistema am análise.
 
 \subsection{Perguntas de Pesquisa}
 \label{subsec:PerguntasPesquisa}
 
-Conduziremos o projeto de pesquisa de modo a responder às seguintes perguntas de
+Conduziremos a dissertação de modo a responder às seguintes perguntas de
 pesquisa:
 
 \noindent
 \texttt{\textit{PP \#1 -- }}
-Que propriedades de sistemas de software o modelo é capaz de expor?
+É possível modelar a execução de sistemas de software com componentes
+heterogêneos e navegabilidade em múltiplas escalas?
 
 \noindent
 \texttt{\textit{PP \#2 -- }}
-Quais são as aplicações e limitações do modelo?
+Tal modelo será capaz de expor detalhes pertinentes às atividades de
+desenvolvimento, manutenção e evolução de software?
+
+\noindent
+\texttt{\textit{PP \#3 -- }}
+É possível tornar este modelo independente de linguagem? Ele é extensível?
 
 \subsection{Objetivos Específicos}
 \label{subsec:ObjetivosEspecíficos}
@@ -146,9 +151,8 @@ tratarão dos objetivos específicos referentes à proposta do modelo e sua
 implementação, haja vista distinção entre o campo teórico e prático.
 
 Quanto aos objetivos específicos referentes à proposta do modelo, determinar
-dados de entrada, transformações sobre tais dados e construção do modelo,
-operações sobre o modelo, análise sobre o modelo, resultados e analise dos
-resultados.
+dados de entrada, transformações sobre tais dados para construção do modelo,
+operações sobre o modelo e análises sobre o modelo.
 
 Quanto aos objetivos específicos referentes à implementação do modelo,
 determinar desafios técnicos e tecnológicos, requisitos da solução, aplicações e
@@ -157,29 +161,38 @@ limitações.
 \section{Organização do trabalho}
 \label{sec:OrganizaçãoTrabalho}
 
-No Capítulo 2 apresentaremos os trabalhos relacionados: ferramentas, metodologia
-e modelos utilizados para apoiar profissionais nas atividades de 
-desenvolvimento, manutenção e evolução de software. Serão apresentadas as
-ferramentas comumente utilizadas --- como \textit{loggers}, depuradores e
-\textit{profilers} ---, trabalhos inseridos nas áreas de Cognição, Compreensão
-e Visualização de Software, bem como trabalhos onde a análise dos sistemas de
-software é feita por meio da Teoria de Redes Complexas.
-
-No Capítulo 3 abordaremos a fundamentação teórica, onde constará o conhecimento
-base para a compreensão deste trabalho. Discutiremos brevemente a história da
-Engenharia de Software. Em seguida, visitaremos alguns conceitos da Teoria de
-Grafos e Redes. Também trataremos da cognição, compreensão e visualização de
+No Capítulo \hyperref[Chapter:RelatedWork]{2} apresentaremos os trabalhos
+relacionados: ferramentas, metodologias e modelos utilizados para apoiar
+profissionais nas atividades de  desenvolvimento, manutenção e evolução de
 software.
+Serão apresentadas as ferramentas comumente utilizadas --- como
+\textit{loggers}, depuradores e \textit{profilers} ---, trabalhos inseridos nas
+áreas de Cognição, Compreensão e Visualização de Software, bem como trabalhos
+onde a análise dos sistemas de software é feita por meio da Teoria de Redes
+Complexas.
 
-No Capítulo 4 discutiremos quais são os requisitos do modelo proposto, bem como
-quais critérios utilizar para verificá-lo e validá-lo. Explanaremos o modelo de
-estrutura de software em execução através de redes hierárquicas de forma
-discursiva e formal.
+%No Capítulo 3 abordaremos a fundamentação teórica, onde constará o conhecimento
+Futuramente constará aqui capítulo no qual abordaremos a fundamentação teórica,
+onde apresentaremos o conhecimento base para a compreensão deste trabalho.
+Discutiremos brevemente a história da Engenharia de Software.
+Em seguida, visitaremos alguns conceitos da Teoria de Grafos e Redes.
+Também trataremos da cognição, compreensão e visualização de software.
 
-No Capítulo 5 analisaremos e discutiremos o modelo proposto quanto às suas
-aplicações, limitações e demais características. Discutiremos ainda aspectos
-sobre possível implementação do método em uma ferramenta de visualização de
-software.
+No Capítulo \hyperref[Chapter:Methodoly]{3} detalharemos a metodologia deste
+trabalho, que consta em duas partes: do modelo e da implementação.
+Explanaremos quais são os dados de entrada, como o modelo é construído, como são
+feitas as operações sobre as redes e como são realizadas as análises sobre o
+modelo. Em seguida, detalharemos o processo utilizado para renderizar os mapas
+da estrutura de execução de sistemas de software.
+%Em seguida, abordaremos como cada um desses pontos se manifesta na
+%implementação, além de detalhar o processo utilizado para renderizar os mapas da
+%estrutura de execução de sistemas.
 
-No Capítulo 6 apresentaremos as conclusões desta dissertação, enunciaremos
-possibilidades de trabalhos futuros e as considerações finais.
+No Capítulo \hyperref[Chapter:Results]{4} apresentaremos um estudo de caso, bem
+como analisaremos e discutiremos o modelo proposto quanto às suas aplicações e
+limitações.
+Avaliaremos ainda as ameaças à validade do trabalho.
+
+No Capítulo \hyperref[Chapter:Conclusion]{5} apresentaremos as conclusões desta
+dissertação, enunciaremos possibilidades de trabalhos futuros e as considerações
+finais.

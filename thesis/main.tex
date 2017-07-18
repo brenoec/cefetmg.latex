@@ -41,7 +41,9 @@
 \usepackage{subeqnarray}                                    % Permite subnumeração de equações
 \usepackage{verbatim}                                       % Permite apresentar texto tal como escrito no documento, ainda que sejam comandos Latex
 \usepackage{amsfonts, amssymb, amsmath}                     % Fontes e símbolos matemáticos
-\usepackage[algoruled, portuguese]{algorithm2e}             % Permite escrever algoritmos em português
+\usepackage{empheq}
+\usepackage[mathscr]{eucal}
+\usepackage[algoruled, algochapter, portuguese]{algorithm2e}             % Permite escrever algoritmos em português
 %\usepackage[scaled]{helvet}                                % Usa a fonte Helvetica
 %\usepackage{times}                                         % Usa a fonte Times
 %\usepackage{palatino}                                      % Usa a fonte Palatino
@@ -74,6 +76,12 @@
     pdfauthor={\@author},
     pdfkeywords={abnt, latex, abntex, abntex2}      % To change as needed!
 }
+\g@addto@macro\normalsize{
+  \setlength\abovedisplayskip{0pt}
+  \setlength\belowdisplayskip{7pt}
+  \setlength\abovedisplayshortskip{0pt}
+  \setlength\belowdisplayshortskip{18pt}
+}
 \makeatother
 
 % Change blue color
@@ -102,17 +110,17 @@
 
 \pretextual
 \imprimircapa
-% \imprimirfolhaderosto{}
+\imprimirfolhaderosto{}
 % \imprimirfolhadeaprovacao{}
 % \include{./1....pre-textual...elements/1.03....dedication}              % Dedicatória
 % \include{./1....pre-textual...elements/1.04....acknowledgments}         % Agradecimentos
 % \include{./1....pre-textual...elements/1.05....epigraph}                % Epígrafe
 \include{./1....pre-textual...elements/1.06....abstract..pt}            % Resumo na língua vernácula
 % \include{./1....pre-textual...elements/1.07....abstract..en}            % Resumo em língua inglesa
-% \include{./1....pre-textual...elements/1.08....list...of...figures}     % Lista de Figuras
+\include{./1....pre-textual...elements/1.08....list...of...figures}     % Lista de Figuras
 % \include{./1....pre-textual...elements/1.09....list...of...tables}      % Lista de Tabelas
 % \include{./1....pre-textual...elements/1.10....list...of...frames}      % Lista de Quadros
-% \include{./1....pre-textual...elements/1.11....list...of...algorithms}  % Lista de Algoritmos
+\include{./1....pre-textual...elements/1.11....list...of...algorithms}  % Lista de Algoritmos
 % \include{./1....pre-textual...elements/1.12....list...of...acronyms}    % Lista de Abreviaturas e Siglas
 % \include{./1....pre-textual...elements/1.13....list...of...symbols}     % Lista de Símbolos
 \include{./1....pre-textual...elements/1.14....summary}                 % Sumário
@@ -121,13 +129,13 @@
 \include{./2....textual...elements/2.01....introduction}                % Introdução
 \include{./2....textual...elements/2.02....related...work}              % Trabalhos Relacionados
 % \include{./2....textual...elements/2.03....theoretical...foundation}    % Fundamentação Teórica
-%\include{./2....textual...elements/2.04....methodology}                 % Metodologia
-% \include{./2....textual...elements/2.05....results}                     % Resultados
-% \include{./2....textual...elements/2.06....conclusion}                  % Conclusão
+\include{./2....textual...elements/2.04....methodology}                 % Metodologia
+\include{./2....textual...elements/2.05....results}                     % Resultados
+\include{./2....textual...elements/2.06....conclusion}                  % Conclusão
 
 \postextual
 \include{./3....post-textual...elements/3.01....references}             % Referências
-% \include{./3....post-textual...elements/3.02....appendix}               % Apêndices
+\include{./3....post-textual...elements/3.02....appendix}               % Apêndices
 % \include{./3....post-textual...elements/3.03....annex}                  % Anexos
 % \include{./3....post-textual...elements/3.04....remissive...index}      % Índice Remissivo
 

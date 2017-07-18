@@ -3,18 +3,52 @@
 %
 
 \chapter{Conclusão}
-\label{chap:Conclusion}
+\label{Chapter:Conclusion}
 
-Procure fazer uma análise crítica de seu trabalho, destacando os principais
-resultados e as contribuições deste trabalho para a área de pesquisa.
+Nesta dissertação propomos uma metodologia para modelar e renderizar a estrutura
+de execução de sistemas de software através de redes hierárquicas, heterogêneas
+e navegáveis em múltiplas escalas. Esta abordagem é agnóstica de linguagens e
+paradigmas de programação, além de disponibilizar operações, dentre outras, de
+agrupamento e ocultação de componentes.
+
+A mudança de escala índice-série permite analisar componentes com alto nível
+hierárquico, que nos informa da estrutura do sistema em análise, ao passo em que
+exibe detalhes de sua estrutura de execução.
+Outras abordagens que utilizam de trilhas de execução para análise de software
+encontram resistência de adoção, entre outros fatores, por: apresentar um grande
+montante de informação aos desenvolvedores e arquitetos de software; ou por
+remover detalhes ou trilhas inteiras de execução pertinente à análise dos
+mesmos.
+A rede reduz a quantidade de informação extraída das trilhas de execução através
+da aplicação dos operadores de redução espacial $\mathcal{S}$ e temporal
+$\mathcal{T}$ e pelas operações de agrupamento e ocultamento de seus elementos.
+
+A valoração dos componentes da rede considera seu nível hierárquico. A valoração
+das ligações depende do nível hierárquico do elemento originatário e do elemento
+destinatário. Valoriza componentes e ligações de de baixo nível hierárquico, com
+o objetivo de expor detalhes da estrutura de execução, bem como desvaloriza
+ligações entre componentes de níveis hierárquicos distintos, uma vez que a
+ligação entre componentes próximos revelam relações de funcionamento e 
+colaboração, no lugar da noção estrutural estabelecida pelas ligações de
+componentes distantes. Esta técnica não considera o tipo de ligação entre
+componentes da rede, no entanto.
+
+Ainda se faz necessário implementar ferramentas para extrair e tratar as trilhas
+de execução, bem como renderizar a rede. Foram considerados casos didáticos para
+a aplicação dos operadores de redução espacial $\mathcal{S}$ e temporal
+$\mathcal{T}$, bem como avaliado a ferramenta de automatização de tarefas de
+desenvolvimento nomeada gulp.
 
 \section{Trabalhos Futuros}
 \label{sec:FutureWork}
 
-Também deve indicar, se possível e/ou conveniente, como este trabalho pode ser
-estendido ou aprimorado.
+\textit{Falta escrever.}
+
+%Também deve indicar, se possível e/ou conveniente, como este trabalho pode ser
+%estendido ou aprimorado.
 
 \section{Considerações Finais}
 \label{sec:FinalConsiderations}
 
-As derradeiras palavras para encerramento do seu trabalho acadêmico.
+\textit{Parte do que for debatido nos resultados do estudo de caso. Falta
+escrever.}

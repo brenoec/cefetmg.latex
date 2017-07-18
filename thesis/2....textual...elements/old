@@ -3,16 +3,12 @@
 %
 
 \chapter{Metodologia}
-\label{Chapter:Methodoly}
+\label{chap:Methodoly}
 
 A metodologia deste trabalho consiste na proposição e implementação de um modelo
 da estrutura da execução de sistemas de software através de redes hierárquicas,
 heterogêneas e navegáveis em múltiplas escalas, com ligações e componentes
 topológicos.
-
-Exemplos da aplicação do modelo a casos didáticos constam no Apêndice
-\ref{Chapter:SpatialTemporalOperators}. Conduzimos estudo de caso no qual
-avaliamos o sistema gulp no Capítulo \hyperref[Chapter:Results]{4}.
 
 \section{Modelo Proposto}
 \label{sec:PropusedModel}
@@ -60,14 +56,51 @@ pode ser obtido por
 \end{equation}
 
 Os pseudo-códigos referentes aos operadores $\mathcal{S}$ e $\mathcal{T}$
-constam nos Algoritmos \hyperref[Algorithm:SpatialReduction]{3.1} e
-\hyperref[Algorithm:TemporalReduction]{3.2}, respectivamente. A expressão
-\texttt{para cada} no Algoritmo \hyperref[Algorithm:SpatialReduction]{3.2}
-corresponde a percorrer todos os nós de uma árvore que representa uma trilha de
-execução.
+constam nos Algoritmos \ref{Algorithm:SpatialReduction} e
+\ref{Algorithm:TemporalReduction}, respectivamente. A expressão
+\texttt{para cada} no Algoritmo \ref{Algorithm:SpatialReduction} corresponde a
+percorrer todos os nós de uma árvore que representa uma trilha de execução.
 
 \input{./7....algorithms/4.01....spatial...reduction}
 \input{./7....algorithms/4.02....temporal...reduction}
+
+%Para exemplificar a aplicação de tais operadores, utilizaremos o Algoritmo 
+%\ref{Algorithm:ExampleAlgorithm} e as trilhas de execução ilustradas na Figura
+%\ref{Figure:ExampleAlgorithmTraces}.
+%
+%\input{./7....algorithms/4.03....example...algorithm}
+%
+%\begin{figure}[!htb]
+%    \centering
+%    \caption{Relações entre as áreas do conhecimento e o trabalho da dissertação}
+%    \includegraphics[scale=1.2]{../shared files/figures/2.04....methodology/example algorithm execution traces/main.pdf}
+%    \fonte{do autor, 2017}
+%    \label{Figure:ExampleAlgorithmTraces}
+%\end{figure}
+%
+%A aplicação do operador de redução espacial $\mathcal{S}$ na trilhas de execução
+%ilustradas na Figura \ref{Figure:ExampleAlgorithmTraces} resulta em grafos
+%(Figura \ref{Figure:ExampleAlgorithmSpatialReduction}). A aplicação do operador
+%de redução temporal $\mathcal{T}$ sobre tais grafos produz mapa $\mathcal{M}$ da
+%estrutura de execução do Algoritmo \ref{Algorithm:ExampleAlgorithm} (Figura 
+%\ref{Figure:ExampleAlgorithmTemporalReduction}).
+%
+%\begin{figure}[!htb]
+%    \centering
+%    \caption{Relações entre as áreas do conhecimento e o trabalho da dissertação}
+%    \includegraphics[scale=1.2]{../shared files/figures/2.04....methodology/example algorithm spatial reduction/main.pdf}
+%    \fonte{do autor, 2017}
+%    \label{Figure:ExampleAlgorithmSpatialReduction}
+%\end{figure}
+%
+%
+%\begin{figure}[!htb]
+%    \centering
+%    \caption{Relações entre as áreas do conhecimento e o trabalho da dissertação}
+%    \includegraphics[scale=1.2]{../shared files/figures/2.04....methodology/example algorithm temporal reduction/main.pdf}
+%    \fonte{do autor, 2017}
+%    \label{Figure:ExampleAlgorithmTemporalReduction}
+%\end{figure}
 
 $\mathcal{M}$ é apenas uma rede de componentes elementares.
 Diferentes abordagens podem ser adotadas para caracterizar relações hierárquicas
@@ -202,39 +235,41 @@ relação dos componentes conectados e seus componentes ponderados de acordo com
 sua posição hierárquica. Ainda se faz necessário definir as operações sobre
 $\mathcal{M}$.
 
+
+%\noindent
+%\textbf{TODO: Exemplos de inserção de ligações e componentes topológicos.}
+%
+%\noindent
+%\textbf{TODO: Exemplos de valoração de vértices e arestas.}
+
 \section{Operações sobre o Modelo}
 \label{subsec:ModelOperations}
 
-A primeira operação que estabelecemos é a inserção de componente externo com
-índice arbitrário. Essa operação se faz necessária para que se possa inserir
-elementos da estrutura de execução cuja captura não seja trivial ou possível
---- sistemas de terceiros, por exemplo.
+Uma das operações que se definine sobre $\mathcal{M}$ é o agrupamento de
+componentes elementares, cujo valor $v$ é a soma dos componentes que ele agrega.
+O componente grupo mantém todas as ligações dos componentes elementares. Se faz
+necessário revalorar suas ligações, uma vez que o índice do grupo não
+corresponde ao índice utilizado para o cálculo 
 
-Outra operação que se definine sobre $\mathcal{M}$ é o agrupamento de
-componentes elementares, cujo índice $i$ é, por padrão, a soma dos índices dos
-componentes agregados.
-É possível atribuir a um agrupamento um índice arbitrário, com o objetivo de
-destacá-lo ou ofuscá-lo. 
-O componente que representa o grupo mantém todas as ligações dos componentes
-elementares que agrupa.
+%\noindent
+%\textbf{TODO: Pseudo-código para agrupamento.}
+%
+%\noindent
+%\textbf{TODO: Exemplo de agrupamento.}
 
-Sempre que o índice de um componente for alterado, se faz necessário revalorar
-suas ligações de entrada e de saída.
+% ocultação
 
-Por fim, definimos a operação de ocultação de componente, que consistem em
-reduzi-lo a um ponto na rede renderizada. Falta definirmos como renderizar a
-rede, no entanto.
+%\noindent
+%\textbf{TODO: Exemplo de ocultação.}
 
 \section{Renderização do Modelo}
 \label{subsec:ModelOperations}
 
-\textit{Falta escrever.}
-
 % área dos componentes
 % simulação física
 
-%\section{Análises sobre o Modelo}
-%\label{subsec:ModelOperations}
+\section{Análises sobre o Modelo}
+\label{subsec:ModelOperations}
 
 %\section{Implementação do Modelo}
 %\label{ModelImplementation}

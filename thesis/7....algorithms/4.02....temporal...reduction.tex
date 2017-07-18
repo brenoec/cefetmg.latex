@@ -1,0 +1,26 @@
+\begin{algorithm}
+    \DontPrintSemicolon
+
+    \label{Algorithm:TemporalReduction}
+    \caption{Operador $\mathcal{T}$ de redução temporal sobre trilhas de execução}
+    \BlankLine
+
+    \Entrada{conjunto de trilhas de execução $\dot{X}$}
+    \Saida{mapa $\mathcal{M}$ da estrutura de execução}
+    \BlankLine
+
+    \SetKwFunction{FTemporalReduction}{$\mathcal{T}$}
+    \SetKwProg{Operator}{Operador}{:}{\Retorna $\mathcal{M}$}
+    \Operator{\FTemporalReduction{$\dot{X}$}}{
+        $x \leftarrow$ grafo vazio\\
+
+        \BlankLine
+        \ParaCada {trilha de execução $\dot{x}\;|\;\dot{x} \in \dot{X}$} {
+            $x \leftarrow \mathcal{S}(\dot{x}, x)$\\
+        }
+        \BlankLine
+
+        $\mathcal{M} \leftarrow x$
+        \BlankLine
+    }
+\end{algorithm}

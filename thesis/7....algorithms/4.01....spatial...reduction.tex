@@ -1,0 +1,38 @@
+\begin{algorithm}
+    \DontPrintSemicolon 
+
+    \label{Algorithm:SpatialReduction}
+    \caption{Operador $\mathcal{S}$ de redução espacial sobre trilha de execução}
+    \BlankLine
+
+    \Entrada{trilha de execução $\dot{x}$, trilha de execução reduzida espacialmente $x$}
+    \Saida{trilha de execução reduzida espacialmente $x$}
+    \BlankLine
+
+    \SetKwFunction{FSpatialReduction}{$\mathcal{S}$}
+    \SetKwProg{Operator}{Operador}{:}{\Retorna $x$}
+    \Operator{\FSpatialReduction{$\dot{x}, x$}}{
+        \BlankLine
+
+        \ParaCada {nó $n\;|\; n \in \dot{x}$} {
+            seja $f$ nó antecedente de $n$\\
+
+            \BlankLine
+            \Se {$n \notin x$} {
+                adiciona vértice $n$ ao grafo $x$\\
+            }
+
+            \BlankLine
+            \Se {aresta $e(f, n) \notin x$ e $f$ não é nulo } {
+                adiciona aresta $e(f, n)$ ao grafo $x$\\
+            }
+
+            \BlankLine
+            \Se {$f$ é nulo } {
+                marca $n$ como ponto de entrada\\
+            }
+        }
+        \BlankLine
+
+    }
+\end{algorithm}

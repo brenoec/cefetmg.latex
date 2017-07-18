@@ -11,7 +11,7 @@ all: clean compile open
 # Compile source
 compile:
 	@echo "Compiling..."
-	@$(LATEXMK) -pdf -quiet -synctex=1 $(SOURCE).tex
+	@$(LATEXMK) -pdf -synctex=1 $(SOURCE).tex
 	@echo "Done"
 
 # Compressing PDF file

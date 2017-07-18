@@ -1,0 +1,68 @@
+\begin{algorithm}
+    \DontPrintSemicolon
+
+    \label{Algorithm:ExampleAlgorithm}
+    \caption{Algoritmo para ilustrar operadores $\mathcal{S}$ e $\mathcal{T}$}
+    \BlankLine
+
+    \SetKwProg{Function}{Função}{:}{\Retorna}
+
+    \tcp{Pasta 1/Arquivo 1}
+    \SetKwFunction{FunctionA}{A}
+    \Function{\FunctionA{}}{ 
+        \Se {$x$} {
+            \texttt{A}
+        }
+
+        \BlankLine
+        \SenaoSe {$y$} {
+            \texttt{B}
+        }
+
+        \BlankLine
+        \SenaoSe {$z$} {
+            \texttt{C}
+        }
+    }
+
+    \;
+    \tcp{Pasta 1/Arquivo 2}
+    \SetKwFunction{FunctionB}{B} 
+    \Function{\FunctionB{}}{ 
+        \texttt{D}
+    }
+
+    \;
+    \SetKwFunction{FunctionD}{D}
+    \Function{\FunctionD{}}{ 
+        \Se {$x$} {
+            \texttt{B}
+        }
+        \texttt{E}\\
+        \texttt{F}\\
+    }
+
+    \;
+    \tcp{Pasta 2/Arquivo 3}
+    \SetKwFunction{FunctionC}{C}
+    \Function{\FunctionC{}}{
+        \texttt{E}\\
+        \texttt{G}
+    }
+
+    \;
+    \tcp{Pasta 2/Pasta 3/Arquivo 4}
+    \SetKwFunction{FunctionE}{E}
+    \Function{\FunctionE{}}{
+    }
+
+    \;
+    \SetKwFunction{FunctionF}{F}
+    \Function{\FunctionF{}}{
+    }
+
+    \;
+    \SetKwFunction{FunctionG}{G}
+    \Function{\FunctionG{}}{
+    }
+\end{algorithm}

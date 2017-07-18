@@ -1,0 +1,74 @@
+\documentclass[border=10pt]{standalone}
+
+\usepackage[utf8]{inputenc}                                 % Codificação do documento
+\usepackage[T1]{fontenc}                                    % Seleção de código de fonte
+\usepackage{microtype}                                      % Melhora a justificação do documento
+\usepackage{lmodern}                                       % Usa a fonte Latin Modern
+\usepackage{ae, aecompl}                                    % Fontes de alta qualidade
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usetikzlibrary{arrows,calc,positioning,shadows.blur,decorations.pathreplacing}
+\usepackage{etoolbox}
+
+\begin{document}
+\begin{tikzpicture}
+[
+	              y = -1cm,
+	           ->, >= stealth',
+	  node distance = 2cm,
+	  vertex/.style = { draw=black, circle, inner sep=2.5pt },
+	toplabel/.style = { label, anchor=south }
+]
+	% first trace
+	% nodes
+	\node (T1) at (-1,-0.5) [toplabel] {a.};
+	\node (A1) at (0,0)   [vertex]   {\texttt{A}};
+	\node (A2) at (1,0)   [vertex]   {\texttt{A}};
+	\node (A3) at (2,0)   [vertex]   {\texttt{A}};
+
+	% edges
+	\draw [->] (A1) edge (A2) (A2) edge (A3);
+
+	% second trace
+	% nodes
+	\node (T2) at (-1,1.5)        [toplabel] {b.};
+	\node (A1) at (0,2)           [vertex]   {\texttt{A}};
+	\node  (C) at (1,2)           [vertex]   {\texttt{C}};
+	\node  (E) at (1.7071,1.2929) [vertex]   {\texttt{E}};
+	\node  (G) at (1.7071,2.7071) [vertex]   {\texttt{G}};
+
+	% edges
+	\draw [->] (A1) edge (C) (C) edge (E) (C) edge (G);
+
+	% third trace
+	% nodes
+	\node (T3) at (4,1.5)         [toplabel] {c.};
+	\node (A1) at (5,2)           [vertex]   {\texttt{A}};
+	\node (A2) at (6,2)           [vertex]   {\texttt{A}};
+	\node  (C) at (7,2)           [vertex]   {\texttt{C}};
+	\node  (E) at (7.7071,1.2929) [vertex]   {\texttt{E}};
+	\node  (G) at (7.7071,2.7071) [vertex]   {\texttt{G}};
+
+	% edges
+	\draw [->] (A1) edge (A2) (A2) edge (C) (C) edge (E) (C) edge (G);
+
+	% fourth trace
+	% nodes
+	\node (T4) at (-1,4)          [toplabel] {d.};
+	\node (A1) at (0,4.5)         [vertex]   {\texttt{A}};
+	\node (B1) at (1,4.5)         [vertex]   {\texttt{B}};
+	\node (D1) at (2,4.5)         [vertex]   {\texttt{D}};
+	\node (E1) at (2.7071,3.7929) [vertex]   {\texttt{E}};
+	\node (F1) at (2.7071,5.2071) [vertex]   {\texttt{F}};
+	\node (B2) at (3,4.5)         [vertex]   {\texttt{B}};
+	\node (D2) at (4,4.5)         [vertex]   {\texttt{D}};
+	\node (E2) at (4.7071,3.7929) [vertex]   {\texttt{E}};
+	\node (F2) at (4.7071,5.2071) [vertex]   {\texttt{F}};
+
+	% edges
+	\draw [->] (A1) edge (B1) (B1) edge (D1) (D1) edge (B2) (D1) edge (E1) (D1) edge (F1);
+	\draw [->] (B2) edge (D2) (D2) edge (E2) (D2) edge (F2);
+\end{tikzpicture}
+\end{document}
