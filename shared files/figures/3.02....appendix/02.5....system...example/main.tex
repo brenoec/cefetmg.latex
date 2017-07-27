@@ -1,0 +1,66 @@
+\documentclass[border=10pt]{standalone}
+
+\usepackage[utf8]{inputenc}                                 % Codificação do documento
+\usepackage[T1]{fontenc}                                    % Seleção de código de fonte
+\usepackage{microtype}                                      % Melhora a justificação do documento
+\usepackage{lmodern}                                        % Usa a fonte Latin Modern
+\usepackage{ae, aecompl}                                    % Fontes de alta qualidade
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usetikzlibrary{arrows,calc,positioning,shadows.blur,decorations.pathreplacing}
+\usepackage{etoolbox}
+
+\usepackage{fontawesome}
+
+\begin{document}
+\begin{tikzpicture}
+[
+                       x = 1.75cm,
+	                   y = 1.75cm,
+	                ->, >= stealth',
+	       node distance = 2cm,
+	       vertex/.style = { draw=black, circle, inner sep=1pt },
+               fn/.style = { draw=black, circle, inner sep=3pt },
+              dot/.style = { draw=black, fill=black, circle, inner sep=0.75pt },
+       coordinate/.style = { draw=none, fill=none, circle, inner sep=0pt, outer sep=0pt },
+	        label/.style = { draw=none, fill=none, anchor=west, scale=0.5 },
+	     toplabel/.style = { draw=none, fill=none, anchor=north, scale=0.5 }
+]
+
+    \node at (0,0)      [vertex] {};
+    \node at (0,0.2)    [toplabel] {\texttt{App}};
+
+    \node at (0,1)      [vertex] {};
+    \node at (0,1.2)    [toplabel] {\texttt{Main}};
+    
+    \node at (0,2)      [fn] {};
+    \node at (0,2.25)   [toplabel] {\texttt{Main}};
+
+    \node at (1,1)      [vertex] {};
+    \node at (1,1.2)    [toplabel] {\texttt{Store}};
+    
+    \node at (1,2)      [vertex] {};
+    \node at (1,2.2)    [toplabel] {\texttt{Cart}};
+
+    \node at (1,3)      [fn] {};
+    \node at (1,3.25)   [toplabel] {\texttt{ShowCart}};
+
+    \node at (2,3)      [fn] {};
+    \node at (2,3.25)   [toplabel] {\texttt{GetCart}};
+
+    \node at (3,1)      [vertex] {};
+    \node at (3,1.2)    [toplabel] {\texttt{User/Session}};
+
+    \node at (3,2)      [fn] {};
+    \node at (3,2.25)   [toplabel] {\texttt{GetSession}};
+
+    \node at (4,1)      [vertex] {};
+    \node at (4,1.2)    [toplabel] {\texttt{FeaturedItems}};
+
+    \node at (4,2)      [fn] {};
+    \node at (4,2.25)   [toplabel] {\texttt{ShowFeaturedItems}};
+
+\end{tikzpicture}
+\end{document}

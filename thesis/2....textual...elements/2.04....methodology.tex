@@ -3,60 +3,92 @@
 %
 
 \chapter{Metodologia}
-\label{Chapter:Methodoly}
+\label{Chapter:Methodology}
 
-A metodologia deste trabalho consiste na proposição e implementação de um modelo
-da estrutura da execução de sistemas de software através de redes hierárquicas,
-heterogêneas e navegáveis em múltiplas escalas, com ligações e componentes
-topológicos.
+A metodologia deste trabalho consiste na proposição de um modelo da estrutura da
+execução de sistemas de software através de redes hierárquicas, heterogêneas e
+navegáveis em múltiplas escalas, com ligações e componentes topológicos.
+Futuramente, este capítulo conterá detalhes da implementação de ferramentas para
+a coleta das trilhas de execução e suas transfomações, bem como para a
+construção da rede, suas operações e renderização.
 
 Exemplos da aplicação do modelo a casos didáticos constam no Apêndice
 \ref{Chapter:SpatialTemporalOperators}. Conduzimos estudo de caso no qual
-avaliamos o sistema gulp no Capítulo \hyperref[Chapter:Results]{4}.
+avaliamos o sistema \texttt{gulp}, um \textit{task runner} JavaScript, no
+Capítulo \ref{Chapter:Results}.
 
 \section{Modelo Proposto}
 \label{sec:PropusedModel}
 
 O modelo proposto visa representar a estrutura de execução de sistemas de
-software através de uma rede --- onde os elementos são componentes desses
-sistemas e ligações são relações entre tais componentes.
+software através de uma rede, onde os elementos são componentes desses sistemas
+e ligações são relações entre tais componentes.
 
 Os conceitos de componente e ligação aqui definidos são abstratos, uma vez que a
-proposta é agnóstica às linguagens de programação. Se tratarmos de sistemas
-orientados a objetos, as entidades básicas da rede serão métodos; se avaliarmos
-sistemas funcionais, funções. Outros cenários também são compatíveis com essa
-abordagem: em JavaScript, por exemplo, funções são consideradas métodos, caso
-definidas como propriedades de um objeto. Neste caso um componente básico ora é
-função, ora é método. 
+proposta é agnóstica às linguagens de programação.
+Se tratarmos de sistemas orientados a objetos, os compontes elementares da rede
+serão métodos; se avaliarmos sistemas funcionais, funções.
+Outros cenários também são compatíveis com essa abordagem: em JavaScript, por
+exemplo, funções são consideradas métodos, caso definidas como propriedades de
+um objeto. Neste caso um componente elementar ora é função, ora é método. 
 
-As ligações representam relações onde, dado um componente originário $a$ e um
-componente destinatário $b$, estabelecemos que $a$ executa $b$. A natureza de
-uma ligação pode ser debatida e considerada a depender do contexto. Quando se
-tratar de sistemas orientados a objetos, a ligação pode se dar por herança ou
-interface; por exemplo.
+As ligações entre componentes elementares representam relações direcionadas
+onde, dado um componente originário $a$ e um componente destinatário $b$,
+estabelecemos que $a$ executa $b$.
+Utilizaremos o símbolo $\mathcal{N}$ para denotar redes formadas apenas por
+componentes elementares e suas ligações.
 
-\section{Construção do Modelo}
+O modelo prevê a inserção de componentes e ligações topológicas, de modo que as
+redes produzidas se tornam heterogêneas e hierárquicas.
+Isto ocorre porque as redes passam a conter diferentes tipos de componentes, com
+diferentes relações hierárquicas entre si.
+São exemplos de componentes topológicos arquivos, pastas, pacotes e outros
+elementos estruturais obtidos a partir de análise estática ou dinâmica.
+Dado um componente originário de maior nível hierárquico $a$ e um componente
+destinatário de menor nível hierárquico $b$, as relações entre $a$ e $b$ podem
+ser caracterizadas por palavras como contém, define, usa, entre outros.
+Redes que contenham componentes elementares e topológicos e suas ligações serão
+denotadas pelo símbolo $\mathcal{M}$.
+
+\subsection{Construção da Rede}
 \label{subsec:DataAquisition}
 
-A construção do modelo se dá pela redução espacial e temporal de trilhas de
-execução. Se considerarmos um componente como uma localidade da estrutura de
-execução do sistema, podemos definir o operador de redução espacial
-$\mathcal{S}$ como uma transformação em uma trilha que unifica diferentes
-ocorrências de um mesmo componente. Se considerarmos um conjunto qualquer de
-trilhas de execução, o operador de redução temporal $\mathcal{T}$ é a agregação
-dessas trilhas, reduzidas espacialmente ou não, em uma única estrutura, o que o
-caracteriza como um operador de união.
+A construção de $\mathcal{N}$ se dá pela redução espacial e temporal de trilhas
+de execução. $\mathcal{M}$ é obtido através da inserção de componentes
+topológicos em $\mathcal{N}$.
+Se considerarmos um componente como uma localidade da estrutura de execução do
+sistema, podemos definir o operador de redução espacial --- denotado por
+$\mathcal{S}$ --- como uma transformação em uma trilha de execução que unifica
+diferentes ocorrências de um mesmo componente.
+Se considerarmos um conjunto qualquer de trilhas de execução, o operador de
+redução temporal --- denotado por $\mathcal{T}$ --- é a união dessas
+trilhas, reduzidas espacialmente ou não, em uma única estrutura.
+Observe que $\mathcal{S}$ atua sobre uma trilha de execução, enquanto que
+$\mathcal{T}$ atua sobre um conjunto de trilhas.
 
-Seja $\dot{X} = \{ \dot{x_1}, \dot{x_2}, \dot{x_3}, \dots, \dot{x_n} \}$ um
-conjunto de $n$ trilhas de execução. Definimos $X = \{ x_1, x_2, x_3, \dots, x_n \}$,
-donde $x_i = \mathcal{S}(\dot{x_i})$ e $X = \mathcal{S}(\dot{X})$, como conjunto
-de $n$ trilhas de execução reduzidas espacialmente. Vale destacar que elementos
-de $\dot{X}$ são árvores, enquanto que elementos de $X$ são grafos.
-Mapa $\mathcal{M}$ da estrutura de execução de determinado sistema de software
+Seja $X = \{ \ x_1, \ x_2, \ x_3, \ \dots, \ x_n \ \}$ um conjunto de $n$
+trilhas de execução, representados por árvores.
+Seja $\dot{X} = \{ \ \dot{x_1}, \ \dot{x_2}, \ \dot{x_3}, \ \dots, \ \dot{x_n} \ \}$
+como conjunto de $n$ trilhas de execução reduzidas espacialmente, representados
+por grafos.
+A relação entre $x_i$ e $\dot{x_i}$ se dá por
+
+\begin{equation}
+	\dot{x_i} = \mathcal{S}(x_i),
+\end{equation}
+
+\noindent
+e entre $X$ e $\dot{X}$ por
+
+\begin{equation}
+	\dot{X} = \mathcal{S}(X).
+\end{equation}
+
+Mapa $\mathcal{N}$ da estrutura de execução de determinado sistema de software
 pode ser obtido por
 
 \begin{equation}
-	\mathcal{M} = \mathcal{T}(\mathcal{S}(\dot{X})) = \bigcup\limits_{i=1}^{n} \mathcal{S}(\dot{x_i}).
+	\mathcal{N} = \mathcal{T}(\mathcal{S}(X)) = \bigcup\limits_{i=1}^{n} \mathcal{S}(x_i).
 \end{equation}
 
 Os pseudo-códigos referentes aos operadores $\mathcal{S}$ e $\mathcal{T}$
@@ -67,112 +99,101 @@ corresponde a percorrer todos os nós de uma árvore que representa uma trilha d
 execução.
 
 \input{./7....algorithms/4.01....spatial...reduction}
+
 \input{./7....algorithms/4.02....temporal...reduction}
 
-$\mathcal{M}$ é apenas uma rede de componentes elementares.
-Diferentes abordagens podem ser adotadas para caracterizar relações hierárquicas
-entre componentes, além de permitir heterogeneidade e navegação em múltiplas
-escalas. Esta dissertação propõe um método para inserir ligações e componentes
-topológicos, determinar o nível hierárquico de todos os elementos e a força das
-relações entre eles.
+Neste ponto basta inserir componentes topológicos em $\mathcal{N}$ para que se
+obtenha $\mathcal{M}$.
 
-\section{Caracterização do Modelo}
+\subsection{Valores de Componentes e suas Ligações}
 \label{subsec:ModelCharacterization}
 
-A caracterização de relações hierárquicas nas redes se darão pela inserção de
-ligações e componentes topológicos, ambos valorados. Exempls de elementos
-topológicos são componentes que representam um arquivo, pasta, pacote ou módulo;
-de modo que as relações agora incorporam significados tais quais: define,
-contém, usa, entre outros.
+Atribuímos tipicamente aos componentes elementares o índice $i_e = 1$.
+Para componetes topológicos, quão maior o nível de abstração, maior seu índice.
+Uma opção é utilizar a sequência ordinal para $n$ classes hierárquicas, onde o
+índice de um componente qualquer é o $k$-\textit{ésimo} elemento do conjunto
+$\{\ 1,\ 2,\ \dots,\ n\ \}$ de acordo com sua classe.
+Determinaremos o índice de um componente topológico como a soma dos índices dos
+componentes em que ele se conecta.
 
-Atribuímos tipicamente aos componentes elementares o índice $i_e = 1$. Para
-componetes topológicos, quão maior o nível de abstração, maior seu índice.
-Utilizaremos o método em que atribuímos o índice de um componente topológico em
-maior nível de hierárquico como a soma dos índices dos componentes em que ele se
-conecta. Outra possibilidade é utilizar a sequência ordinal para $n$ classes
-hierárquicas, onde o índice de um componente qualquer é o i-\textit{ésimo}
-elemento do conjunto $\{1,2,\dots,n\}$, de acordo com a sua posição na
-sequência.
+Os valores para os componentes e ligações da rede são dependentes de uma função
+indexadora $f(i)$ e série numérica $N$, associadas a uma escala $S$
 
-O valor $v$ de determinado componente depende de seu índice $i$, função de
-índice $f$ e de uma série exponencial $S$
+\begin{equation}
+	\label{Equation:SetScale}
+	S(N, f(i)) = N_{f(i)}.
+\end{equation}
+
+A escala linear --- ou natural --- é definda pelo conjunto dos números naturais
+maiores que zero
+
+\begin{equation}
+	\label{Equation:NaturalSetScale}
+	\mathbb{N}_{i}^{*}.
+\end{equation}
+
+A escala de Fibonacci é definida como
+
+\begin{equation}
+	\label{Equation:FibonacciSetScale}
+	F_{i+2}, \qquad F= \{\ 0,\ 1,\ 1,\ 2,\ 3,\ 5,\ 8,\ \dots\ \}.
+\end{equation}
+
+Note que a função de índice expressa pela Equação \ref{Equation:FibonacciSetScale}
+nos permite desconsiderar os dois primeiros elementos da série de Fibonacci
+--- o elemento 0 e o primeiro elemento 1 --- para que não se represente um
+componete com valor 0 e componentes em diferentes níveis hierárquicos com o
+mesmo valor 1.
+
+O valor $v$ de um componente é
 
 \begin{equation}
 	\label{Equation:WeightVertex1}
-	v(i) = \alpha_1 \cdot S_{f(i)},
+	v = \alpha_1 \cdot N_{f(i)},
 \end{equation}
 
 \noindent
-onde $\alpha$ é parâmetro de ajuste. Nesta dissertação adotaremos a série de
-Fibonacci $F$ definida como
+onde \boldsymbol{$\alpha$} é um vetor de parâmetros de ajuste.
 
-\begin{empheq}[left=\empheqlbrace]{equation}
-\begin{split}
-	\quad F_0 &= 0, \\
-	\quad F_1 &= 1, \\
-	\quad F_n &= F_{n-1} + F_{n-2}, \qquad n > 1
-\end{split}
-\end{empheq}
-
-\noindent
-e função de índice $f$ definida como
-
-\begin{equation}
-	\label{Equation:IndexFunction1}
-	f(i) = i + 2,
-\end{equation}
-
-\noindent
-de modo que a Equação \ref{Equation:WeightVertex1} é expressa como
-
-\begin{equation}
-	\label{Equation:WeightVertex2}
-	v(i) = \alpha_1 \cdot F_{i+2}.
-\end{equation}
-
-Note que a função de índice expressa pela Equação \ref{Equation:IndexFunction1}
-nos permite desconsiderar os dois primeiros elementos da série de Fibonacci
-$\{0, 1, 1, 2, 3, 5, 8, 13, \dots \}$ --- o elemento 0 e o primeiro elemento 1 ---
-com o propósito de não representar um componete com valor 0 e de não representar
-componentes em diferentes níveis hierárquicos com o mesmo valor 1.
-
-A abordagem para valorar as lilgações da rede é bastante similar. Dado um
-componente originário $a$ e um componente destinatário $b$, com os respectivos
-índices $i_a$ e $i_b$, uma possibilidade é determinar o valor $e$ de uma
-ligação por
+Dado um componente originário $a$ e um componente destinatário $b$, com os
+respectivos índices $i_a$ e $i_b$, o valor $e$ de uma ligação é determinada por  
 
 \begin{equation}
 	\label{Equation:WeightEdge1}
-	e(i_a) = \frac{1}{\alpha_3 \cdot F_{i_a+2}},
+	e = \frac{1}{\alpha_2 \cdot N_{f(i_a)}},
 \end{equation}
 
 \noindent
 de modo que quão maior o índice de um componente, menor o valor de sua ligação.
+
 Podemos alterar a Equação \ref{Equation:WeightEdge1} para atenuar relações entre
 componentes com índices distintos
 
 \begin{equation}
 	\label{Equation:WeightEdge2}
-	e(i_a, i_b) = \frac{1}{1 + \alpha_2 \cdot d(F_{i_a+2}, F_{i_b+2})} \cdot \frac{1}{\alpha_3 \cdot F_{i_a+2}},
+	e = \frac{1}{1 + \alpha_3 \cdot d(N_{f(i_a)}, N_{f(i_b)})} \cdot \frac{1}{\alpha_2 \cdot F_{f(i_a)}},
 \end{equation}
 
 \noindent
-onde $d(F_{i_a+2}, F_{i_b+2})$ é a distância euclidiana entre $F_{i_a+2}$ e 
-$F_{i_b+2}$
+onde $d(N_{f(i_a)}, N_{f(i_b)})$ é a distância euclidiana entre $N_{f(i_a)}$ e 
+$N_{f(i_b)}$
 
 \begin{equation}
 	\label{Equation:EuclidianDistance}
-	d(i_a, i_b) = \sqrt{(F_{i_a+2} - F_{i_b+2})^2} = \lvert F_{i_a+2} - F_{i_b+2} \rvert.
+	d = \sqrt{(N_{f(i_a)} - N_{f(i_b)})^2} = \lvert N_{f(i_a)} - N_{f(i_b)} \rvert.
 \end{equation}
 
+\noindent
 Tal termo atenuante é inserido com finalidade de valorizar relações entre
-componentes semelhantes que pertencem a classes hierárquicas próximas ou
-idênticas. Se substituirmos a Equação \ref{Equation:EuclidianDistance} na
-Equação \ref{Equation:WeightEdge2}, obtemos
+componentes semelhantes que pertencem a uma mesma classe hierárquica ou a
+classes hierárquicas próximas.
+
+Se substituirmos a Equação \ref{Equation:EuclidianDistance} na Equação
+\ref{Equation:WeightEdge2}, obtemos
 
 \begin{equation}
 	\label{Equation:WeightEdge3}
-	e(i_a, i_b) = \frac{1}{1 + \alpha_2 \cdot \lvert F_{i_a+2} - F_{i_b+2} \rvert} \cdot \frac{1}{\alpha_3 \cdot F_{i_a+2}}.
+	e = \frac{1}{1 + \alpha_3 \cdot \lvert F_{i_a+2} - F_{i_b+2} \rvert} \cdot \frac{1}{\alpha_2 \cdot F_{i_a+2}}.
 \end{equation}
 
 Os parâmetros $\alpha_1$, $\alpha_2$ e $\alpha_3$, que aparecem nas equações
@@ -182,56 +203,340 @@ restrições:
 \begin{empheq}[left=\empheqlbrace]{equation}
 \begin{split}
 	\quad \alpha_1 > 0, \\
-	\quad \alpha_2 > 0, \\
-	\quad \alpha_3 \geq 1.
+	\quad \alpha_2 \geq 1, \\
+	\quad \alpha_3 \geq 0.
 \end{split}
 \end{empheq}
 
 É necessário que $\alpha_1$ seja definido positivo, uma vez que o valor $v$
-atribuído a um componente qualquer é definido positivo. De forma similar,
-$\alpha_2$ é definido positivo, para que se mantenha o termo atenuante como tal.
-Por fim, $\alpha_3$ precisa respeitar sua restrição para que valores atribuídos
-às arestas estejam no intervalo $[0, 1]$.
+atribuído a um componente qualquer é definido positivo.
+De forma similar, $\alpha_3$ é definido positivo para que se mantenha o termo
+atenuante como tal.
+O parâmetro $\alpha_2$ precisa maior ou igual a 1 para que valores atribuídos às
+arestas estejam no intervalo $[0, 1]$ --- para escalas crescentes cujo menor
+valor é menor ou igual a 1.
 
-$\mathcal{M}$ é uam rede definida por um conjunto de vértices valorados $V$ e um
-conjunto de arestas valoradas $E$. $E$ pode ser representado por uma matriz,
-tipicamente assimétrica, cujos valores se encontram no intervalo $[0, 1]$.
-Tal rede possui ligações e componentes topológicos em diferentes níveis
-hierárquicos. Ademais, suas ligações são ponderadas de acordo com a força da
-relação dos componentes conectados e seus componentes ponderados de acordo com
-sua posição hierárquica. Ainda se faz necessário definir as operações sobre
-$\mathcal{M}$.
+Ainda se faz necessário definir as operações sobre redes hierárquicas,
+heterogêneas e navegáveis em múltiplas escalas.
 
-\section{Operações sobre o Modelo}
+\subsection{Operações sobre as Redes}
 \label{subsec:ModelOperations}
 
-A primeira operação que estabelecemos é a inserção de componente externo com
-índice arbitrário. Essa operação se faz necessária para que se possa inserir
-elementos da estrutura de execução cuja captura não seja trivial ou possível
---- sistemas de terceiros, por exemplo.
+O modelo proposto suporta as operações enunciadas no Quadro \ref{Frame:SupportedOperations}.
+Consta nele se determinada operação dispara rotinas de simulação do modelo de
+forças elásticas e elétricas e a renderização da rede, bem como se sua aplicação
+resulta em uma transformação dos valores de componentes e ligações e, em caso
+positivo, se local ou global.
 
-Outra operação que se definine sobre $\mathcal{M}$ é o agrupamento de
-componentes elementares, cujo índice $i$ é, por padrão, a soma dos índices dos
-componentes agregados.
-É possível atribuir a um agrupamento um índice arbitrário, com o objetivo de
-destacá-lo ou ofuscá-lo. 
-O componente que representa o grupo mantém todas as ligações dos componentes
-elementares que agrupa.
+A inserção de componentes externos com índices arbitrários se faz necessária
+na hipótese de ser imprática a extração de trilhas de execução de determinado
+elemento da execução de um sistema, seja por razões legais ou técnicas. A
+remoção de tais componentes se faz necessária para reparar uma inserção
+incorreta ou inválida.
 
-Sempre que o índice de um componente for alterado, se faz necessário revalorar
-suas ligações de entrada e de saída.
+O agrupamento de componentes topológicos que formam sequência linear --- sem
+bifurcações --- reduz o número de elementos renderizados e o espaço necessário
+para rederizar a rede.
 
-Por fim, definimos a operação de ocultação de componente, que consistem em
-reduzi-lo a um ponto na rede renderizada. Falta definirmos como renderizar a
-rede, no entanto.
+O agrupamento de componentes elementares possibilita a redução de informação
+sobre análise de acordo com o discernimento do operador. Esta operação deve
+conservar todas as ligações e deve ser reversível. O agrupamento de componentes
+elementares e topológicos é considerado operação ilegal por que sua soma de
+índices é não conservativa.
 
-\section{Renderização do Modelo}
+A supressão de componentes permite identificar os elementos da rede cujas
+propriedades são impertinentes à análise do operador. Componentes supressos são
+renderizados como pontos.
+
+A edição arbitrária do índice de um componente qualquer altera o valor do
+componente, de suas ligações e de ligações para ele.
+
+A edição arbitrária do índice de ligações elementares não altera o valor dos
+componentes elementares, apenas de suas ligações.
+Esta operação nos permite avaliar visualmente a distorção das redes em função
+da força das ligações de componentes elementares.
+
+A troca de escala é uma operação que atua sobre a rede. Ela altera qual série ou
+função indexadora serão utilizadas para computar os valores das ligações e
+componentes da rede.
+Será necessário computar novos valores para todos os componentes e ligações de
+uma rede sempre que houver troca de escala ou troca de parâmetros pertinentes à
+simulação do modelo de forças elásticas e elétricas.
+Armazenar o estado de uma rede para cada escala é uma forma de mitigar este
+efeito, se os recursos computacionais necessários estiverem disponíveis.
+
+%As seguintes operações disparam a simulação do modelo de forças elásticas e
+%elétricas e a rotina de renderização da rede:
+%edição arbitrária do índice de um componente;
+%edição arbitrária do índice de ligações elementares;
+%troca de escala,
+
+\begin{landscape}
+\begin{quadro}[!htb]
+    \centering
+    \caption{Operações suportadas pelo modelo proposto e entidades sobre as quais atuam tais operações \label{Frame:SupportedOperations}}
+    \begin{tabular}{*{1}{|L{14cm}}*{4}{|C{1.5cm}}|}
+		\hline
+		\multicolumn{1}{|C{14cm}|}{\multirow{7}{*}{\textbf{Operação}}} & \multicolumn{2}{C{3.4cm}|}{\textbf{Dispara}} & \multicolumn{2}{C{3.4cm}|}{\textbf{Transfomação}} \\\cline{2-5}
+		 & \rotatebox[origin=c]{70}{\textbf{Simulação}}
+		 & \rotatebox[origin=c]{70}{\textbf{Renderização}}
+		 & \rotatebox[origin=c]{70}{\textbf{Local}}
+		 & \rotatebox[origin=c]{70}{\textbf{Global}} \\
+        \hline
+        Leitura das redes e suas propriedades 													& & & & \\
+        \hline
+        Inserção de componentes externos com índices arbitrários e suas ligações				& $\bullet$ & $\bullet$ & $\bullet$ & \\
+        \hline
+		Remoção de componentes externos com índices arbitrários e suas ligações					& $\bullet$ & $\bullet$ & $\bullet$ & \\
+        \hline
+        Agrupamento de componentes topológicos em cadeia linear única 							& $\bullet$ & $\bullet$ & $\bullet$ & \\
+        \hline
+		Agrupamento de componentes elementares													& $\bullet$ & $\bullet$ & $\bullet$ & \\
+        \hline
+        Suprimir componentes																	& & $\bullet$ & & \\
+        \hline
+        Edição arbitrária do índice de um componente											& $\bullet$ & $\bullet$ & $\bullet$ & \\
+		\hline
+		Edição arbitrária do índice de ligações elementares										& $\bullet$ & $\bullet$ & & $\bullet$ \\
+        \hline
+		Troca de parâmetros																		& $\bullet$ & $\bullet$ & & $\bullet$ \\
+        \hline
+        Troca de escala																			& $\bullet$ & $\bullet$ & & $\bullet$ \\
+        \hline
+
+    \end{tabular}
+    \fonte{do autor, 2017}
+\end{quadro}
+\end{landscape}
+
+\subsection{Simulção do Modelo de Forças Elásticas e Elétricas}
 \label{subsec:ModelOperations}
 
-\textit{Falta escrever.}
+% É PRECISO VERIFICAR SE ESTA PROPOSTA É ORIGINAL
+O modelo de forças elásticas e elétricas proposto nesta dissertação é uma
+adaptação do modelo apresentado por \citeonline{hu2005efficient}, baseado nos
+trabalhos de \citeonline{fruchterman1991graph} e \citeonline{walshaw2000multilevel}.
+Acrescentamos termos de forças elásticas de contato e forças dissipativas, bem
+como remodelamos as forças elétricas e elástica por ligação.
+Sobre os componentes de $\mathcal{N}$ ou $\mathcal{M}$ atuam quatro tipos de
+forças, portanto: elétrica, elástica de contato, elástica de ligação e
+dissipativa.
 
-% área dos componentes
-% simulação física
+Dados dois componentes $i, j$ quaisquer, com os respectivos valores
+$v_i, v_j$ e coordenadas centrais $\vec{x}_i, \vec{x}_j$, a força elétrica
+repulsiva  $\vec{f}_{elétrica}$ entre tais componentes é determinada pela
+equação da Lei de Coulomb
+
+\begin{equation}
+	\label{Equation:RepulsiveEletricalForce}
+	\vec{f}_{elétrica} = \beta_1 \cdot \frac{v_i \  v_j}{{\lvert \vec{x}_i - \vec{x}_j \rvert}^2}, \qquad \beta_1 \geq 0,
+\end{equation}
+
+\noindent
+onde $\beta_1$ é constante elétrica.
+
+Seja $r_i, r_j$ os respectivos raios de dois componentes $i, j$. Podemos
+detectar a distenção por contato $d$ de tais componentes através da seguinte
+análise de casos:
+
+\begin{empheq}[left=\empheqlbrace]{equation}
+\begin{split}
+	\quad \lvert \vec{x}_i - \vec{x}_j \rvert > r_i + r_j, \qquad d = 0 \\
+	\quad \lvert \vec{x}_i - \vec{x}_j \rvert \leq r_i + r_j, \qquad d \geq 0 \\
+\end{split}
+\end{empheq}
+
+Nos casos em que a distância entre $\vec{x}_i$ e $\vec{x}_j$ é menor
+que a soma de seus raios, a distenção por contato $d$ é determinada por
+
+\begin{equation}
+	\label{Equation:ContactElasticDistension}
+	d = (r_i + r_j) - \lvert \vec{x}_i - \vec{x}_j \rvert,
+\end{equation}
+
+\noindent
+de modo que a força elástica de contato $\vec{f}_{contato}$ é
+
+\begin{equation}
+	\label{Equation:ContactElasticForce}
+	\vec{f}_{contato} = \beta_2 \cdot d, \qquad \beta_2 \geq 0,
+\end{equation}
+
+\noindent
+onde $\beta_2$ representa a constante elástica dos componentes interpenetrados.
+Consideramos que todos os componentes possuem uma mesma constante elástica, uma
+vez que a inserção desta força no modelo tem como objetivo impedir agregação de
+componentes em uma mesma região do espaço.
+
+A força elástica de ligação $\vec{f}_{ligação}$ é determinada pelo seu valor
+$e$, constante elástica $\beta_3$ e distância de equilíbrio $x_{eq}$
+
+\begin{equation}
+	\label{Equation:LinkElasticForce}
+	\vec{f}_{ligação} = \beta_3 \cdot e \cdot (x - x_{eq}), \qquad \beta_3 \geq 0, \quad x_{eq} > 0.
+\end{equation}
+
+Note que a força elástica de ligação $\vec{f}_{ligação}$ é repulsiva caso
+$x < x_{eq}$, e atrativa caso $x > x_{eq}$.
+Consideramos que todas as ligações possuem o mesmo valor para a distância de
+equilíbrio $x_{eq}$, dado que seu valor $e$ já considera os componentes
+conectados e seus índices.
+Uma possibilidade seria determinar o valor da ligações de acordo com a Equação
+\ref{Equation:WeightEdge1} e determinar $x_{eq}$ por
+
+\begin{equation}
+	\label{Equation:EquilibriumDistanceSuggestion}
+	x_{eq} = 1 + k \cdot \lvert F_{i_a+2} - F_{i_b+2} \rvert, \qquad k \geq 0,
+\end{equation}
+
+\noindent
+mas serão mantidas as Equações \ref{Equation:WeightEdge3} e \ref{Equation:LinkElasticForce}.
+
+A força aplicada $\vec{f}_{aplicada}$ a um componente $i$ em uma rede com $n$
+elementos é a soma das forças elétricas repulsivas, de contato e de ligação, nos
+casos em que se aplicam:
+
+\begin{equation}
+	\label{Equation:AppliedForce}
+	\vec{f}_{aplicada} = \sum_{i \neq j}^{n} \vec{f}_{elétrica}
+		+ \sum_{i \  | \  j}^{n} \vec{f}_{contato}
+		+ \sum_{i \leftrightarrow j}^{n} \vec{f}_{ligação},
+\end{equation}
+
+\noindent
+onde $i \neq j$ denota pares de componentes distintos, $i \ | \ j$
+pares em contato com distenção não nula e positiva, e $i \leftrightarrow j$
+pares conectados.
+Se exitir múltiplas ligações entre componente $i$ e $j$, $i \rightarrow j$, bem
+como entre $j$ e $i$, $i \leftarrow j$, todas contribuirão para o termo que soma
+as forças elásticas por ligação que atuam sobre o componente $i$.
+
+A força dissipativa $\vec{f}_{dissipativa}$ é um termo cuja função é atenuar
+$\vec{f}_{aplicada}$ e dissipar a energia potencial da rede
+
+\begin{equation}
+	\label{Equation:FrictionForce}
+	\vec{f}_{dissipativa} = \beta_4 \cdot \vec{f}_{aplicada}, \qquad \beta_4 \geq 0,
+\end{equation}
+
+\noindent
+de modo que a força resultante $\vec{f}_{r}$ é
+
+\begin{equation}
+	\label{Equation:FinalForce1}
+	\vec{f}_{r} = \vec{f}_{aplicada} - \vec{f}_{dissipativa},
+\end{equation}
+
+\noindent
+ou ainda, de forma mais conveniente, por
+
+\begin{equation}
+	\label{Equation:FinalForce2}
+	\vec{f}_{r} = \vec{f}_{aplicada} \cdot (1 - \beta_4), \qquad \beta_4 \geq 0.
+\end{equation}
+
+Uma vez de posse da força resultante sobre um componente qualquer, relacionamos
+seu movimento com base na Segunda Lei de Newton
+
+\begin{equation}
+	\label{Equation:NewtonSecondLaw}
+	\vec{f}_{r} = m \cdot \vec{a}.
+\end{equation}
+
+Neste trabalho consideramos $m = 1$ para qualquer componente, pois seu índice já
+foi utilizado para calcular seu valor e o valor de suas ligações, de modo que
+ele atua direta ou indiretamente sobre os quatro tipos de forças consideradas
+neste modelo.
+
+Determinamos, portanto, a posição de um componente pelo mapa iterativo
+
+\begin{equation}
+	\label{Equation:IterativePosition}
+	\vec{x}_{i+1} = \vec{x}_i + \vec{v}_i \  \Delta t + \frac{1}{2} \  \vec{a} \  {\Delta t}^2,
+\end{equation}
+
+\noindent
+e sua velocidade através do seguinte mapa iterativo
+
+\begin{equation}
+	\label{Equation:IterativeVelocity}
+	\vec{v}_{i+1} = \vec{v}_i + \vec{a} \  \Delta t, \qquad \vec{v}_0 = \vec{0}.
+\end{equation}
+
+% É PRECISO REFERENCIAR ALGO PARA A ESTIPULAÇÃO DO PARÂMETRO DELTA T
+O tamanho do passo de tempo da simulação é definido pelo parâmetro não nulo e
+positivo $\Delta t$. 
+Baixos valores para $\Delta t$ nos permite obter melhor resultado numérico a um
+custo computacional, já que serão necessárias mais iterações para que se atinja
+algum critério de parada.
+Valores maiores de $\Delta t$ podem gerar erro numérico e instabilidade na rede,
+uma vez que forças resultantes exercem sua influência por períodos longos e
+podem produzir interpenetração severa. 
+Interpenetrações severas devem ser evitadas por que a constante elástica de
+contato é alta, de modo que atuam como fonte indevida de energia potencial e
+produzem movimentos instáveis na rede.
+Iteressante é encontrar valores para $\Delta t$ que minimize o número de
+iterações necessárias para atingir um dos critérios de parada e mantenha a
+simulação estável.
+A precisão numérica, embora atraente, não é importante para a nossa aplicação,
+uma vez que posições aproximadas são suficientes para representar a estrutura de
+execução das redes estudadas.
+Esta dissertação estabelecerá valores para $\Delta t$ empiricamente.
+
+A atualização da posição dos componentes da rede será sícrona, isto é, primeiro
+determinaremos as forças sobre todos os componentes, depois atualizaremos suas
+coordenadas e seus valores de velocidade.
+
+A simulação obedecerá dois critérios de parada.
+O primeiro critério de parada é determinado pelo número máximo de iterações
+$\sigma_1 \geq 0$.
+O segundo critério de parada é determinado pela norma da maior força resultante
+$f_m$ em determinado $\Delta t$.
+O processo simulacional é interrompido caso $f_m \leq \sigma_2,\ \sigma_2 \geq 0$.
+
+A posição inicial dos componentes é determinada através de coordenadas em
+circunferências concéntricas.
+Percorremos a rede em profundidade e classificamos cada elemento de acordo o
+número de componentes até a raiz.
+Dispomos os elementos de classes iguais em circunferências concéntricas,
+igualmente espaçados.
+Em ordem crescente, componetes de maior nível são dispostos em circunferências
+maiores.
+O raio de uma circunferência é estipulados de modo a respeitar distância mínima
+$\delta_1$ entre circunferências adjacentes e $\delta_2$ entre componentes.
+Este método inviabiliza interpenetração de componentes em $t = 0$.
+
+A área $A$ de um componente é dada pelo inverso de seu valor, multiplicado por
+um fator $\gamma_1$
+
+\begin{equation}
+	\label{Equation:ComponenteArea}
+	A = \gamma_1 \cdot \frac{1}{\alpha_1 \cdot F_{i+2}}, \qquad \gamma_1 > 0,
+\end{equation}
+
+\noindent
+uma vez que componentes com índices próximos do índice elementar determinam como
+se dá a colaboração na rede, ao passo em que os componentes com índices elevados
+determinam sua estrutura. 
+
+Seja $A_e$ área de um componente elementar. A área de um componente oculto $A_h$
+é:
+
+\begin{equation}
+	\label{Equation:HiddenComponenteArea}
+	A_h = \gamma_2 \cdot A_e, \qquad  0 < \gamma_2 \leq 1,
+\end{equation}
+
+\noindent
+com o objetivo de reduzir a área de componentes ocultos. $A_h$ é considerado
+limite inferior para a área de um componente.
+
+%Por fim, definiremos aqui uma operação que somente faz sentido no momento em que
+%se pode visualizar a rede. Propomos que se possa alterar o valor do índice
+%atribuído aos componentes elementares apenas no que tange o cálculo do valor de
+%suas ligações. A distorção da rede --- ou a falta dela --- em função das
+%ligações dos componentes elementares pode revelvar informações até então não
+%percebidas.
 
 %\section{Análises sobre o Modelo}
 %\label{subsec:ModelOperations}

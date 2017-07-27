@@ -9,6 +9,191 @@
 \chapter{Casos Didáticos}
 \label{Chapter:SpatialTemporalOperators}
 
-\textit{Falta escrever.}
+Este capítulo contém caso didático no qual aplicamos os operadores de redução
+espacial e temporal em trilhas de execução do algoritmo fatorial recursivo e
+obtemos o mapa da estrutura de sua execução.
+Em seguida, consideramos um sistema hipotético de loja virtual no qual, além de
+aplicar tais operadores para obter mapa do sistema, inserimos componentes
+topológicos na rede e calculamos os valores do componentes e ligações.
+Assumimos 1 para todos os parâmetros do modelo, com finalidade de simplificar os
+cálculos e facilitar sua exibição em texto.
+
+Os mapas da estrutura de execução dos casos exibidos neste capítulo não foram
+simuladas através do modelo de forças elásticas e elétricas proposto nesta
+dissertação, dado que a ferramenta de simulação ainda não foi concluída.
+
+\section{Caso Didático: Algoritmo Fatorial Recursivo}
+
+Podemos observar as possíveis trilhas de execução para o Algoritmo
+\hyperref[Algorithm:RecursiveFactorial]{A.1} na Figura
+\ref{Figure:RecursiveFatorialTraces}. Note que $x_1$ corresponde às trilhas de
+execução para $n = 0$ e $n = 1$. A trilha para $n = 2$ é representada por $x_2$,
+enquanto que $x_n$ representa trilhas para um $n$ qualquer.
+
+\input{./7....algorithms/3.02....appendix/01.1....recursive...factorial.tex}
+
+Aplicamos então o operador de redução espacial $\mathcal{S}$ ao conjunto 
+de trilhas de execução $X = \{\ x_1,\ x_2,\ \dots,\ x_n\ \}$ e obtemos o
+conjunto $\dot{X} = \{\ \dot{x}_1,\ \dot{x}_2,\ \dots,\ \dot{x}_n\ \}$ (Figura
+\ref{Figure:RecursiveFatorialSpatialReducedTraces}).
+Esta operação une instâncias diferentes de um mesmo ponto de uma trilha de
+execução. Observe que todos os elementos $x_i$ são iguais para $i \geq 2$.
+Na sequência, aplicamos o operador de redução temporal $\mathcal{T}$ sobre o
+conjunto de trilhas reduzidas espacialmente $\dot{X}$ e obtemos mapa
+$\mathcal{M}$ para o algoritmo de fatorial recursivo (Figura
+\ref{Figure:RecursiveFatorialCase}). Esta operação une instâncias de um mesmo
+componente entre diferentes trilhas de execuções reduzidas espacialmente.
+
+Este caso contém apenas um componente elementar ($i = 1$) com valor $v = 1$ e
+laço com valor $e = 1$.
+
+\begin{figure}[!htb]
+    \centering
+    \caption{Possíveis trilhas de execução para o Algoritmo \hyperref[Algorithm:RecursiveFactorial]{A.1}}
+    \includegraphics[scale=1.2]{../shared files/figures/3.02....appendix/01.1....recursive...factorial/main.pdf}
+    \fonte{do autor, 2017}
+    \label{Figure:RecursiveFatorialTraces}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \caption{Operador de redução espacial $\mathcal{S}$ aplicado sobre elementos da Figura \ref{Figure:RecursiveFatorialTraces}}
+    \includegraphics[scale=1.2]{../shared files/figures/3.02....appendix/01.2....recursive...factorial/main.pdf}
+    \fonte{do autor, 2017}
+    \label{Figure:RecursiveFatorialSpatialReducedTraces}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \caption{Operador de redução temporal $\mathcal{T}$ aplicado sobre elementos da Figura \ref{Figure:RecursiveFatorialSpatialReducedTraces}}
+    \includegraphics[scale=1.2]{../shared files/figures/3.02....appendix/01.3....recursive...factorial/main.pdf}
+    \fonte{do autor, 2017}
+    \label{Figure:RecursiveFatorialCase}
+\end{figure}
+
+\section{Caso Didático: Sistema Hipotético de Loja Virtual}
+
+Considere um sistema de loja virtual hipotético cuja estrutura --- árvore de
+pastas, arquivos e funções --- e fluxo de execução --- setas pretas --- estão
+ilustrados na Figura \ref{Figure:StrutctureExecutionFlowStore}.
+
+Um usuário se identifica ao acessar o sistema e, em algum ponto da execução, a
+função \texttt{GetSession} recupera sua última sessão.
+Imagine que o sistema direciona o usuário para seu carrinho de compras caso este
+contenha algum produto --- função \texttt{ShowCart}, que executa
+\texttt{GetCart} ---, ou o direciona para avaliar produtos em destaque caso
+contrário --- função \texttt{ShowFeaturedItems}.
+
+\begin{figure}[!htb]
+    \centering
+    \caption{Extrutura e fluxo de execução de sistema hipotético de loja virtual}
+    \includegraphics[scale=1.2]{../shared files/figures/3.02....appendix/02.1....system...example/main.pdf}
+    \fonte{do autor, 2017}
+    \label{Figure:StrutctureExecutionFlowStore}
+\end{figure}
+
+Possíveis trilhas de execução desse sistema estão representadas na Figura
+\ref{Figure:ExecutionTracesStore}. Observe que a aplicação do operador de
+redução espacial $\mathcal{S}$ não alteram os grafos que representam tais
+trilhas, uma vez que não há ocorrências múltiplas de nenhum dos componentes.
+A aplicação do operador de redução temporal $\mathcal{T}$ resulta em mapa
+$\mathcal{M}$ ainda sem componentes topológicos, ilustrado na Figura
+\ref{Figure:StoreMap}.
+
+É interessante ressaltar que a análise de $\mathcal{M}$ não nos permite saber
+se as ligações do componente \texttt{Main} são chamadas em sequência, possíveis
+em uma mesma trilha de execução; se correspondem a casos de condicionais,
+fruto da redução temporal em diversas trilhas; ou se ali estão por motivos
+outros.
+
+\pagebreak
+
+\begin{figure}[!htb]
+    \centering
+    \caption{Possíveis trilhas de execução de sistema hipotético de loja virtual}
+    \includegraphics[scale=1.2]{../shared files/figures/3.02....appendix/02.2....system...example/main.pdf}
+    \fonte{do autor, 2017}
+    \label{Figure:ExecutionTracesStore}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \caption{$\mathcal{M}$ para sistema hipotético de loja virtual, sem componentes topológicos}
+    \includegraphics[scale=1.2]{../shared files/figures/3.02....appendix/02.3....system...example/main.pdf}
+    \fonte{do autor, 2017}
+    \label{Figure:StoreMap}
+\end{figure}
+
+%\pagebreak
+
+Uma representação de $\mathcal{M}$ com componentes topológicos consta na
+Figura \ref{Figure:StoreTopologicalMap}. Podemos notar a agregação dos
+componentes topológicos \textit{pasta} \texttt{Users} e \textit{arquivo}
+\texttt{Session} em um único componente, uma vez que eles constituem uma cadeia
+linear de elementos topológicos, vide Figura \ref{Figure:StrutctureExecutionFlowStore}.
+
+%O método utilizado para atribuir posicionamento inicial a cada um dos
+%componentes de $\mathcal{M}$ em grade se encontra ilustrado na Figura
+%\ref{Figure:StoreInitialPositioning}, conforme processo descrito no Capítulo 
+%\ref{Chapter:Methodology}
+
+\begin{figure}[!htb]
+    \centering
+    \caption{$\mathcal{M}$ para sistema hipotético de loja virtual, com componentes topológicos}
+    \includegraphics[scale=1.2]{../shared files/figures/3.02....appendix/02.4....system...example/main.pdf}
+    \fonte{do autor, 2017}
+    \label{Figure:StoreTopologicalMap}
+\end{figure}
+
+%\begin{figure}[!htb]
+%    \centering
+%    \caption{Posicionamento inicial dos componentes em grade}
+%    \includegraphics[scale=1.2]{../shared files/figures/3.02....appendix/02.5....system...example/main.pdf}
+%    \fonte{do autor, 2017}
+%    \label{Figure:StoreInitialPositioning}
+%\end{figure}
+
+Índices e Valores de componentes, bem como os valores de ligações, constam na
+Tabela \ref{Table:StoreMapValues}. Espaços em branco tem valor 0. Observe como
+que a matriz de adjacência de $\mathcal{M}$ é esparsa e como que os pesos das
+ligações de \texttt{App} revelam maior coesão, do ponto de vista da estrutura
+desta rede, entre \texttt{App} e \texttt{Store}.
+
+\begin{landscape}
+\begin{table}[!htb]
+    \centering
+    \caption{Valores para mapa $\mathcal{M}$ de sistema hipotético de loja virtual. \label{Table:StoreMapValues}}
+    \begin{tabular}{r|C{1.2cm}C{1.2cm}C{1.2cm}C{1.2cm}C{1.2cm}C{1.2cm}C{1.2cm}C{1.2cm}C{1.2cm}C{1.2cm}C{1.2cm}}
+        \toprule
+            & \rotatebox[origin=c]{70}{\texttt{App}}
+            & \rotatebox[origin=c]{70}{\texttt{Store}}
+            & \rotatebox[origin=c]{70}{\texttt{Cart}}
+            & \rotatebox[origin=c]{70}{\texttt{ShowCart}}
+            & \rotatebox[origin=c]{70}{\texttt{GetCart}}
+            & \rotatebox[origin=c]{70}{\texttt{FeaturedItems}}
+            & \rotatebox[origin=c]{70}{\texttt{ShowFeaturedItems}}
+            & \rotatebox[origin=c]{70}{\texttt{Users/Session}}
+            & \rotatebox[origin=c]{70}{\texttt{GetSession}}
+            & \rotatebox[origin=c]{70}{\texttt{Main}}
+            & \rotatebox[origin=c]{70}{\texttt{Main}} \\
+        \midrule
+            Índices & 5 & 3 & 2 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+            Valores & 8 & 3 & 2 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+        \midrule
+            \texttt{App}                &  & $1/48$ &  &  &  &  &  & $1/64$ &  & $1/64$ &  \\
+            \texttt{Store}              &  &  & $1/6$ &  &  & $1/9$ &  &  &  &  &  \\
+            \texttt{Cart}               &  &  &  & $1/4$ & $1/4$ &  &  &  &  &  &  \\
+            \texttt{ShowCart}           &  &  &  &  & 1 &  &  &  &  &  &  \\
+            \texttt{GetCart}            &  &  &  &  &  &  &  &  &  &  &  \\
+            \texttt{FeaturedItems}      &  &  &  &  &  &  & 1 &  &  &  &  \\
+            \texttt{ShowFeaturedItems}  &  &  &  &  &  &  &  &  &  &  &  \\
+            \texttt{Users/Session}      &  &  &  &  &  &  &  &  & 1 &  &  \\
+            \texttt{GetSession}         &  &  &  &  &  &  &  &  &  &  &  \\
+            \texttt{Main}               &  &  &  &  &  &  &  &  &  &  & 1 \\
+            \texttt{Main}               &  &  &  & 1 &  &  & 1 &  & 1 &  &  \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+\end{landscape}
 
 \end{apendicesenv}

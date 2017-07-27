@@ -1,0 +1,30 @@
+\documentclass[border=10pt]{standalone}
+
+\usepackage[utf8]{inputenc}                                 % Codificação do documento
+\usepackage[T1]{fontenc}                                    % Seleção de código de fonte
+\usepackage{microtype}                                      % Melhora a justificação do documento
+\usepackage{lmodern}                                        % Usa a fonte Latin Modern
+\usepackage{ae, aecompl}                                    % Fontes de alta qualidade
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usetikzlibrary{arrows,calc,positioning,shadows.blur,decorations.pathreplacing}
+\usepackage{etoolbox}
+
+\begin{document}
+\begin{tikzpicture}
+[
+	              y = -1cm,
+	           ->, >= stealth',
+	  node distance = 2cm,
+	  vertex/.style = { draw=black, circle, inner sep=2.5pt },
+	   label/.style = { draw=none, fill=none },
+	toplabel/.style = { label, anchor=south }
+]
+	\node (fat) at  (-1,0)    [label]    {$\mathcal{M}$};
+	\node (fat) at   (0,0)    [vertex]   {\texttt{Fat}};
+	\draw [->] (fat) edge [loop above] (fat);
+
+\end{tikzpicture}
+\end{document}

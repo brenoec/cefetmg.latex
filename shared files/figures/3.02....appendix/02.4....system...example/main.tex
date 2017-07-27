@@ -1,0 +1,88 @@
+\documentclass[border=10pt]{standalone}
+
+\usepackage[utf8]{inputenc}                                 % Codificação do documento
+\usepackage[T1]{fontenc}                                    % Seleção de código de fonte
+\usepackage{microtype}                                      % Melhora a justificação do documento
+\usepackage{lmodern}                                        % Usa a fonte Latin Modern
+\usepackage{ae, aecompl}                                    % Fontes de alta qualidade
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usetikzlibrary{arrows,calc,positioning,shadows.blur,decorations.pathreplacing}
+\usepackage{etoolbox}
+
+\usepackage{fontawesome}
+
+\begin{document}
+\begin{tikzpicture}
+[
+                     x =  1.75cm,
+	                 y = -1.75cm,
+	                ->, >= stealth',
+	       node distance = 2cm,
+topologicalvertex/.style = { draw=black, circle, inner sep=1pt },
+	       vertex/.style = { draw=black, circle, inner sep=3pt },
+              dot/.style = { draw=black, fill=black, circle, inner sep=0.75pt },
+       coordinate/.style = { draw=none, fill=none, circle, inner sep=0pt, outer sep=0pt },
+	        label/.style = { draw=none, fill=none, anchor=west, scale=0.5 },
+	     toplabel/.style = { draw=none, fill=none, anchor=north, scale=0.5 }
+]
+
+    \node (App)                                 at (2.91, 2.237)       [topologicalvertex] {};
+        \node (MainFile)                        at (2.91, 3.237)       [topologicalvertex] {};
+            \node (Main)                        at (2.91, 4.237)       [vertex] {};
+        \node (Store)                           at (1.94, 1.990)       [topologicalvertex] {};
+            \node (FeaturedItemsFile)           at (0.97, 2.237)       [topologicalvertex] {};
+                    \node (ShowFeaturedItems)   at (0, 2.484)       [vertex] {};
+            \node (CartFile)                    at (1.835, 0.995)       [topologicalvertex] {};
+                \node (ShowCart)                at (0.72, 0.748)       [vertex] {};
+                \node (GetCart)                 at (1.73, 0)           [vertex] {};
+        \node (Users-SessionFile)               at (3.88, 1.990)       [topologicalvertex] {};
+            \node (GetSession)                  at (4.85, 1.743)       [vertex] {};
+
+    \draw[opacity=0.25] (App) -> (MainFile);
+    \draw[opacity=0.25] (App) -> (Store);
+    \draw[opacity=0.25] (App) -> (Users-SessionFile);
+
+    \draw[opacity=0.25] (MainFile) -> (Main);
+
+    \draw[opacity=0.25] (Store) -> (FeaturedItemsFile);
+    \draw[opacity=0.25] (Store) -> (CartFile);
+
+    \draw[opacity=0.25] (FeaturedItemsFile) -> (ShowFeaturedItems);
+
+    \draw[opacity=0.25] (CartFile) -> (ShowCart);
+    \draw[opacity=0.25] (CartFile) -> (GetCart);
+
+    \draw[opacity=0.25] (Users-SessionFile) -> (GetSession);
+
+    \draw (Main) -> (GetSession);
+    \draw (Main) -> (ShowFeaturedItems);
+    \draw (Main) -> (ShowCart);
+    \draw (ShowCart) -> (GetCart);
+
+    \node[opacity=0.5] (AppLabel) at (2.91, 2.037) [toplabel] {\texttt{App}};
+
+    \node[opacity=0.5] (Users-SessionFileLabel) at (3.88, 1.745) [toplabel] {\texttt{Users/Session}};
+    \node (GetSessionLabel) at (4.85, 1.483) [toplabel] {\texttt{GetSession}};
+
+    \node[opacity=0.5] (StoreLabel) at (1.99, 1.890) [label] {\texttt{Store}};
+
+    \node[opacity=0.5] (FeaturedItemsFileLabel) at (0.87, 2.037) [toplabel] {\texttt{FeaturedItems}};
+    \node (ShowFeaturedItemsLabel) at (-0.1, 2.234) [toplabel] {\texttt{ShowFeaturedItems}};
+
+    \node[opacity=0.5] (CartFileLabel) at (1.885, 0.995) [label] {\texttt{Cart}};
+
+    \node (ShowCartLabel) at (0.62, 0.498) [toplabel] {\texttt{ShowCart}};
+    \node (GetCartLabel) at (1.73,-0.25) [toplabel] {\texttt{GetCart}};
+
+    \node[opacity=0.5] (MainFileLabel)               at (2.96, 3.237)     [label] {\texttt{Main}};
+    \node (MainLabel)                   at (2.91, 4.337)     [toplabel] {\texttt{Main}};
+    %\node (GetSessionLabel)         at (1,-1.5)     [toplabel] {\texttt{GetSession}};
+    %\node (ShowFeaturedItemsLabel)  at (0.134, 0.7) [toplabel] {\texttt{ShowFeaturedItems}};
+    %\node (ShowCartLabel)           at (2.066, 0.5) [label]    {\texttt{ShowCart}};
+    %\node (GetCartLabel)            at (2.9321, 1)  [label]    {\texttt{GetCart}};
+
+\end{tikzpicture}
+\end{document}

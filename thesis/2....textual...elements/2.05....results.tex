@@ -5,9 +5,64 @@
 \chapter{Resultados Preliminares}
 \label{Chapter:Results}
 
-Como primeiro estudo de caso avaliaremos sistema de software gulp sem considerar
-suas dependências, cuja estrutura de execução conta com 99 linhas de código, 3
-arquivos fonte e 5 funções. Na sequência, iremos adicionar componentes externos
-referentes aos módulos externos utilizados pela aplicação avaliada.
+Neste primeiro estudo de caso preliminar, avaliamos o sistema de software
+\texttt{gulp}\footnote{Disponível em: \href{http://gulpjs.com}. Acessado em 22/07/2017.},
+cuja estrutura de execução conta com 99 linhas de código, 3 arquivos fontes e 5
+funções.
+Este sistema foi escolhido por que foi a menor aplicação encontrada no trabalho
+de \citeonline{silva2017identifying}, que selecionou os 1000 repositórios mais
+populares de aplicações JavaScript de acordo com seu número de estrelas.
+Tal seleção ocorreu em 2015.
 
-\textit{Falta escrever.}
+O \texttt{gulp} é um \textit{task runner} JavaScript que permite automatizar tarefas
+rotineiras do fluxo de desenvolvimento, tais quais construir aplicações,
+executar testes unitários, entre outras.
+
+Sua estrutura simplificada e $\mathcal{M}_{\texttt{gulp}}$
+--- mapa da estrutura de execução do sistema de software \texttt{gulp}, com componentes
+topológicos --- se encontram representados nas Figuras
+\ref{Figure:GulpStructure} e \ref{Figure:GulpMap}, respectivamente.
+
+\begin{figure}[!htb]
+    \centering
+    \caption{Estrutura simplificada para a aplicação \texttt{gulp}}
+    \includegraphics[scale=1.2]{../shared files/figures/2.05....results/01.1....gulp...structure/main.pdf}
+    \fonte{do autor, 2017}
+    \label{Figure:GulpStructure}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \caption{Mapa $\mathcal{M}_{\texttt{gulp}}$ da estrutura de execução do sistema de software \texttt{gulp}, com componentes topológicos}
+    \includegraphics[scale=1.2]{../shared files/figures/2.05....results/01.2....gulp...map/main.pdf}
+    \fonte{do autor, 2017}
+    \label{Figure:GulpMap}
+\end{figure}
+
+A rede foi produzida por análise estática, uma vez que se trata de uma aplicação
+hipotética de pequeno porte e o resultado de sua instrumentação é simples de se
+obter.
+Não utilizamos o processo de simulação de forças elásticas e elétrica proposto
+neste trabalho, dado que a implementação da ferramenta de simulação ainda não
+foi concluída.
+Componentes externos referentes aos módulos diretamente utilizados pela
+aplicação avaliada foram adicionados. Dependências indiretas foram omitidas.
+
+O componente anônimo definido por \texttt{index.js} é uma função definida e
+no escopo do componente \texttt{watch}.
+Isto mostra que a rede --- como definida --- não tem capacidade de representar
+este nível de detalhamento.
+Evitamos representar exceções e peculiaridades para não pesar o modelo visual
+dos mapas renderizados.
+
+%Um problema que é preciso enfrentar sempre que se decide representar
+%informações em uma rede é o de como isso afeta a clareza visual da rede.
+
+O \texttt{gulp} provê funcionalidades das mais diversas. No entanto,
+$\mathcal{M}_{\texttt{gulp}}$ é uma rede simples, com poucos componentes e 
+ligações. Como pode $\mathcal{M}_{\texttt{gulp}}$ prover tantas funcionalidades?
+Além de depender de uma série de módulos, \texttt{gulp} é extensível por
+intermédio de \textit{plugins}, o que nos faz pensar na necessidade de estudar
+não só sistemas de software, mas também a interação entre tais sistemas: análise
+de um sistema de sistemas.
+%Como pode uma rede tão pequena quanto $\mathcal{M}_{\texttt{gulp}}$ ? Ela não provê. 

@@ -229,7 +229,7 @@
 \newfloat[chapter]{quadro}{loq}{\quadroname}
 \newlistof{listofquadros}{loq}{\listofquadrosname}
 \newlistentry{quadro}{loq}{0}
-\counterwithout{quadro}{chapter}
+%\counterwithout{quadro}{chapter}
 \renewcommand{\cftquadroname}{\quadroname\space}
 \renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
 

@@ -40,10 +40,12 @@
 \usepackage{multirow, array}                                % Permite tabelas com múltiplas linhas e colunas
 \usepackage{subeqnarray}                                    % Permite subnumeração de equações
 \usepackage{verbatim}                                       % Permite apresentar texto tal como escrito no documento, ainda que sejam comandos Latex
-\usepackage{amsfonts, amssymb, amsmath}                     % Fontes e símbolos matemáticos
+\usepackage{amsfonts, amssymb, amsmath, bm}                 % Fontes e símbolos matemáticos
 \usepackage{empheq}
+\usepackage{xfrac}                                          % slanted fractions
 \usepackage[mathscr]{eucal}
 \usepackage[algoruled, algochapter, portuguese]{algorithm2e}             % Permite escrever algoritmos em português
+%\usepackage{rotating}                                       % permite páginas em modo paisagem
 %\usepackage[scaled]{helvet}                                % Usa a fonte Helvetica
 %\usepackage{times}                                         % Usa a fonte Times
 %\usepackage{palatino}                                      % Usa a fonte Palatino
@@ -51,7 +53,7 @@
 %\usepackage[bottom]{footmisc}                              % Mantém as notas de rodapé sempre na mesma posição
 \usepackage{ae, aecompl}                                    % Fontes de alta qualidade
 %\usepackage{latexsym}                                      % Símbolos matemáticos
-%\usepackage{lscape}                                        % Permite páginas em modo "paisagem"
+\usepackage{pdflscape}                                        % Permite páginas em modo "paisagem"
 %\usepackage{picinpar}                                      % Dispor imagens em parágrafos
 %\usepackage{scalefnt}                                      % Permite redimensionar tamanho da fonte
 %\usepackage{subfig}                                        % Posicionamento de figuras
@@ -84,6 +86,10 @@
 }
 \makeatother
 
+% define novo tipo de coluna para tabelas
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{L}[1]{>{\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
 % Change blue color
 \definecolor{blue}{RGB}{41,5,195}
 
@@ -103,7 +109,7 @@
 %
 
 \include{./1....pre-textual...elements/1.00....cover}
-% \include{./1....pre-textual...elements/1.01....cover...sheet}
+\include{./1....pre-textual...elements/1.01....cover...sheet}
 % \include{./1....pre-textual...elements/1.02....approval...sheet}
 
 \begin{document}
@@ -112,14 +118,14 @@
 \imprimircapa
 \imprimirfolhaderosto{}
 % \imprimirfolhadeaprovacao{}
-% \include{./1....pre-textual...elements/1.03....dedication}              % Dedicatória
-% \include{./1....pre-textual...elements/1.04....acknowledgments}         % Agradecimentos
-% \include{./1....pre-textual...elements/1.05....epigraph}                % Epígrafe
+\include{./1....pre-textual...elements/1.03....dedication}              % Dedicatória
+\include{./1....pre-textual...elements/1.04....acknowledgments}         % Agradecimentos
+\include{./1....pre-textual...elements/1.05....epigraph}                % Epígrafe
 \include{./1....pre-textual...elements/1.06....abstract..pt}            % Resumo na língua vernácula
-% \include{./1....pre-textual...elements/1.07....abstract..en}            % Resumo em língua inglesa
+\include{./1....pre-textual...elements/1.07....abstract..en}            % Resumo em língua inglesa
 \include{./1....pre-textual...elements/1.08....list...of...figures}     % Lista de Figuras
-% \include{./1....pre-textual...elements/1.09....list...of...tables}      % Lista de Tabelas
-% \include{./1....pre-textual...elements/1.10....list...of...frames}      % Lista de Quadros
+\include{./1....pre-textual...elements/1.09....list...of...tables}      % Lista de Tabelas
+\include{./1....pre-textual...elements/1.10....list...of...frames}      % Lista de Quadros
 \include{./1....pre-textual...elements/1.11....list...of...algorithms}  % Lista de Algoritmos
 % \include{./1....pre-textual...elements/1.12....list...of...acronyms}    % Lista de Abreviaturas e Siglas
 % \include{./1....pre-textual...elements/1.13....list...of...symbols}     % Lista de Símbolos

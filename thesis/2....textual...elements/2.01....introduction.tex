@@ -28,13 +28,13 @@ de software que possivelmente as sanam (Figura \ref{fig:CamadasAbstraçãoSoftwa
 \begin{figure}[!htb]
     \centering
     \caption{Camadas entre desejos e necessidades e os sistemas de software}
-    \includegraphics[width=1\textwidth]{../shared files/figures/software abstraction layers/main.pdf}
+    \includegraphics[scale=1.75]{../shared files/figures/software abstraction layers/main.pdf}
     \fonte{do autor, 2017}
     \label{fig:CamadasAbstraçãoSoftware}
 \end{figure}
 
-A quinta Lei de Lehman \cite{Lehman1980:Laws}, a lei da conservação da
-familiaridade: complexidade percebida, determina que a taxa de crescimento de
+A quinta Lei de Lehman \cite{Lehman1980:Laws}, a Lei da Conservação da
+Familiaridade: Complexidade Percebida, determina que a taxa de crescimento de
 um sistema é limitada pela quantidade de informação absorvida coletiva e
 individualmente \cite{Wazlawick2013:Engenharia}.
 
@@ -54,8 +54,8 @@ Fica caracterizado o problema que é conhecer e alterar as propriedades dos
 sistemas de software corretamente; portanto.
 Diversas abordagens surgiram ao longo dos anos para tratar tais questões, de
 modo que ferramentas, metodologias, processos e modelos foram propostos por
-praticantes e estudiosos. Formou-se então, entre outras campos de pesquisa nas
-áreas de Cognição, Compreensão e Visualização de Software.
+praticantes e estudiosos. Formou-se então os campos de pesquisa nas áreas de
+Cognição, Compreensão e Visualização de Software.
 
 O campo de pesquisa referente à Visualização de Software recebeu considerável
 atenção de pesquisadores nos últimos 30 anos, onde uma parcela das ferramentas
@@ -67,11 +67,11 @@ trabalhos da área. Tal requisito considera que pessoas interessadas trabalham
 com diferentes níveis de abstração, de forma a reduzir a quantidade de
 informação através do agrupamento de elementos \cite{Kienle2007:Requirements}.
 
-Redes complexas diferem dos sistemas dinâmicos tradicionais, pois não há a
-necessidade de componentes se ligarem uns aos outros de forma homogênea e
-regular \cite{Sayama:2015:Complex}.
-\citeonline{Weifeng:2011:Complex} cita a aplicação da análise de redes complexas
-em sistemas de software para sua caracterização, medição e modelagem de
+\citeonline{Sayama:2015:Complex} argumenta que redes complexas diferem dos
+sistemas dinâmicos tradicionais, pois não há a necessidade de componentes se
+ligarem uns aos outros de forma homogênea ou regular.
+\citeonline{Weifeng:2011:Complex} cita a aplicação da Teoria de Redes Complexas
+a sistemas de software para caracterização de sua topologia, modelagem de seu
 crescimento, bem como aplicações nas práticas de Engenharia de Software.
 
 %Os trabalhos de \citeonline{Barabasi:19999:EmergenceScaling} e \citeonline{Strogatz:1998:Networks}
@@ -80,6 +80,8 @@ crescimento, bem como aplicações nas práticas de Engenharia de Software.
 %Engenharia de Software inclusa ---, entre tantas outras
 %\cite{Barabasi:2003:Linked}, \cite{Borner:2007:Network}, \cite{Barabasi:2016:Network}.
 
+Por vezes o estudo da Engenharia de Software se dá através de métodos de análise
+estática, dinâmica, ou, como neste trabalho, híbrida.
 A estrutura de um software em tempo de execução difere de sua estrutura
 estática \cite{Crockford2008:JavaScriptGoodParts}.
 Nas palavras de \citeonline[p.~22]{Gamma1995:Design}:
@@ -94,22 +96,23 @@ the other is like trying to understand the dynamism of living ecosystems from
 the static taxonomy of plants and animals, and vice versa.}
 \end{citacao}
 
+A análise da estrutura estática de um software permite estudar representações do
+código fonte e relações entre seus componentes.
 A análise da estrutura dinâmica de um software permite o estudo de seu
-comportamento e de seu fluxo de dados, já que certas propriedades de sistemas de
-software somente são conhecidas durante sua execução. A análise da estrutura
-estática de um software, por sua vez, permite estudar representações do código
-fonte e de certas relações entre seus componentes.
+comportamento e de seu fluxo de dados, uma vez que certas relações de execução 
+somente são conhecidas durante sua execução.
+É importante destacar que as duas técnicas são complementares.
 
-Relações entre as áreas do conhecimento da Engenharia de Software (ES),
-Compreensão de Software (CS) e Visualização de Software (VS), bem como o emprego
-de grafos hierárquicos e redes complexas (RC) e a análise da estruturas
-estáticas (EE) e dinâmicas (ED) de sistesmas de software estão ilustradas na
-Figura \ref{fig:RelaçãoConhecimentoTrabalho}.
+Relações entre as áreas do conhecimento da Engenharia de Software (ES), Cognição
+e Compreensão de Software (CS) e Visualização de Software (VS), bem como o
+emprego de grafos hierárquicos e a Teoria de Redes Complexas (RC) e a análise de
+estruturas estáticas (EE) e dinâmicas (ED) de sistesmas de software estão
+ilustradas na Figura \ref{fig:RelaçãoConhecimentoTrabalho}.
 
 \begin{figure}[!htb]
     \centering
     \caption{Relações entre as áreas do conhecimento e o trabalho da dissertação}
-    \includegraphics[width=1\textwidth]{../shared files/figures/research area/main.pdf}
+    \includegraphics[scale=1.75]{../shared files/figures/research area/main.pdf}
     \fonte{do autor, 2017}
     \label{fig:RelaçãoConhecimentoTrabalho}
 \end{figure}
@@ -131,8 +134,8 @@ pesquisa:
 
 \noindent
 \texttt{\textit{PP \#1 -- }}
-É possível modelar a execução de sistemas de software com componentes
-heterogêneos e navegabilidade em múltiplas escalas?
+É possível modelar a execução de sistemas de software de forma hieráquica, com
+componentes heterogêneos e com navegabilidade em múltiplas escalas?
 
 \noindent
 \texttt{\textit{PP \#2 -- }}
@@ -151,9 +154,8 @@ tratarão dos objetivos específicos referentes à proposta do modelo e sua
 implementação, haja vista distinção entre o campo teórico e prático.
 
 Quanto aos objetivos específicos referentes à proposta do modelo, determinar
-dados de entrada, transformações sobre tais dados para construção do modelo,
-operações sobre o modelo e análises sobre o modelo.
-
+dados de entrada, transformações sobre tais dados para sua construção, operações
+e método de renderização.
 Quanto aos objetivos específicos referentes à implementação do modelo,
 determinar desafios técnicos e tecnológicos, requisitos da solução, aplicações e
 limitações.
@@ -161,7 +163,7 @@ limitações.
 \section{Organização do trabalho}
 \label{sec:OrganizaçãoTrabalho}
 
-No Capítulo \hyperref[Chapter:RelatedWork]{2} apresentaremos os trabalhos
+No Capítulo \ref{Chapter:RelatedWork} apresentaremos os trabalhos
 relacionados: ferramentas, metodologias e modelos utilizados para apoiar
 profissionais nas atividades de  desenvolvimento, manutenção e evolução de
 software.
@@ -172,27 +174,37 @@ onde a análise dos sistemas de software é feita por meio da Teoria de Redes
 Complexas.
 
 %No Capítulo 3 abordaremos a fundamentação teórica, onde constará o conhecimento
-Futuramente constará aqui capítulo no qual abordaremos a fundamentação teórica,
-onde apresentaremos o conhecimento base para a compreensão deste trabalho.
-Discutiremos brevemente a história da Engenharia de Software.
-Em seguida, visitaremos alguns conceitos da Teoria de Grafos e Redes.
-Também trataremos da cognição, compreensão e visualização de software.
+Futuramente constará no texto capítulo no qual abordaremos a fundamentação
+teórica, onde apresentaremos o conhecimento base para a compreensão deste
+trabalho.
+Visitaremos conceitos da Teoria de Grafos e de Redes Complexas.
+Em seguida, discutiremos brevemente a história da Engenharia de Software e
+os campos de pesquisa da Cognição, Compreensão e Visualização de Software.
 
-No Capítulo \hyperref[Chapter:Methodoly]{3} detalharemos a metodologia deste
-trabalho, que consta em duas partes: do modelo e da implementação.
-Explanaremos quais são os dados de entrada, como o modelo é construído, como são
-feitas as operações sobre as redes e como são realizadas as análises sobre o
-modelo. Em seguida, detalharemos o processo utilizado para renderizar os mapas
-da estrutura de execução de sistemas de software.
+No Capítulo \ref{Chapter:Methodology} detalharemos a metodologia deste trabalho.
+%, que consta em duas partes: do modelo e da implementação.
+Explanaremos quais são os dados de entrada, como o modelo é construído e quais
+são as operações definidas sobre as redes.
+Em seguida, detalharemos o processo utilizado para renderizar os mapas da
+estrutura de execução de sistemas de software.
+Futuramente, este capítulo conterá detalhes da implementação de ferramentas para
+a coleta das trilhas de execução e suas transfomações, bem como para a
+construção da rede, suas operações e renderização.
 %Em seguida, abordaremos como cada um desses pontos se manifesta na
 %implementação, além de detalhar o processo utilizado para renderizar os mapas da
 %estrutura de execução de sistemas.
 
-No Capítulo \hyperref[Chapter:Results]{4} apresentaremos um estudo de caso, bem
-como analisaremos e discutiremos o modelo proposto quanto às suas aplicações e
-limitações.
-Avaliaremos ainda as ameaças à validade do trabalho.
+No Capítulo \ref{Chapter:Results} apresentaremos estudo de caso da aplicação
+\texttt{gulp}, um \textit{task runner} JavaScript.
+Uma vez finalizadas as implementações e de posse de resultados sólidos, 
+discutiremos o modelo proposto quanto às suas aplicações e limitações e
+avaliaremos as ameaças à validade do trabalho.
+%Avaliaremos ainda as ameaças à validade do trabalho.
 
-No Capítulo \hyperref[Chapter:Conclusion]{5} apresentaremos as conclusões desta
-dissertação, enunciaremos possibilidades de trabalhos futuros e as considerações
-finais.
+No Capítulo \ref{Chapter:Conclusion} apresentaremos as conclusões preliminares
+desta dissertação. Enunciaremos possibilidades de trabalhos futuros já
+detectadas e as considerações finais.
+
+O Apêndice \ref{Chapter:SpatialTemporalOperators} contém casos didáticos onde
+aplicamos nossa metodologia no algoritmo fatorial recursivo e em um sistema
+hipotético de loja virtual.

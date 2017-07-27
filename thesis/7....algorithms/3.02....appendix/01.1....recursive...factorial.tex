@@ -1,0 +1,31 @@
+\begin{algorithm}[!htb]
+    \DontPrintSemicolon 
+
+    \label{Algorithm:RecursiveFactorial}
+    \caption{Fatorial recursivo}
+    \BlankLine
+
+    %\Entrada{número natural $n$}
+    %\Saida{fatorial de $n$}
+    %\BlankLine
+
+    \SetKwFunction{FnFatorial}{\texttt{Fat}}
+    \SetKwProg{Function}{Função}{:}{\textbf{fim}}
+    \Function{\FnFatorial{$n$}}{
+
+        \BlankLine
+        \Se {$n = 0 \ \lor \  n = 1$} {
+            \Retorna 1
+        }
+
+        \BlankLine
+        \Senao {
+            \Retorna $n \  \times \  $ \texttt{Fat($n - 1$)}
+        }
+
+        \BlankLine
+        \Retorna não definido
+
+        \BlankLine
+    }
+\end{algorithm}

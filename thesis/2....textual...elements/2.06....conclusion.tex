@@ -7,21 +7,22 @@
 
 Nesta dissertação propomos uma metodologia para modelar e renderizar a estrutura
 de execução de sistemas de software através de redes hierárquicas, heterogêneas
-e navegáveis em múltiplas escalas. Esta abordagem é agnóstica de linguagens e
-paradigmas de programação, além de disponibilizar operações, dentre outras, de
-agrupamento e ocultação de componentes.
+e navegáveis em múltiplas escalas.
+Ela é aplicável a redes homogêneas, no entanto.
+Esta abordagem é agnóstica de linguagens de programação.
 
-A mudança de escala índice-série permite analisar componentes com alto nível
-hierárquico, que nos informa da estrutura do sistema em análise, ao passo em que
-exibe detalhes de sua estrutura de execução.
-Outras abordagens que utilizam de trilhas de execução para análise de software
-encontram resistência de adoção, entre outros fatores, por: apresentar um grande
-montante de informação aos desenvolvedores e arquitetos de software; ou por
-remover detalhes ou trilhas inteiras de execução pertinente à análise dos
-mesmos.
-A rede reduz a quantidade de informação extraída das trilhas de execução através
-da aplicação dos operadores de redução espacial $\mathcal{S}$ e temporal
-$\mathcal{T}$ e pelas operações de agrupamento e ocultamento de seus elementos.
+%A mudança de escala índice-série permite analisar componentes com alto nível
+%hierárquico, que nos informa da estrutura do sistema em análise, ao passo em que
+%exibe detalhes de sua estrutura de execução.
+
+% referenciar
+Segundo \citeonline{ezzati2017multi}, abordagens que utilizam de trilhas de
+execução para análise de software geram grandes quantidades de dados, difíceis
+de analisar e gerenciar. Extrair informações pertinentes destes dados não é
+tarefa trivial.
+$\mathcal{M}$ reduz a quantidade de informação extraída das trilhas de execução
+através da aplicação dos operadores de redução espacial $\mathcal{S}$ e temporal
+$\mathcal{T}$ e pelas operações de agrupamento e supressão de seus elementos.
 
 A valoração dos componentes da rede considera seu nível hierárquico. A valoração
 das ligações depende do nível hierárquico do elemento originatário e do elemento
@@ -42,7 +43,42 @@ desenvolvimento nomeada gulp.
 \section{Trabalhos Futuros}
 \label{sec:FutureWork}
 
-\textit{Falta escrever.}
+Como possibilidades de trabalhos futuros, vislumbramos a aplicação da Teoria de
+Redes para obter informações relativas às propriedades topológicas e métricas
+das redes. São redes de mundo pequeno? Suas estruturas são livres de escala?
+Qual é seu coeficiente de agrupamento? Quais são suas métricas de centralidade?
+Essas são algumas da muitas perguntas que se pode responder.
+Além de extrair relatórios informativos quanto da distribuição de ligações por
+componente, relacionar tais métricas com as métricas estabelecidas na Engenharia
+de Software.
+
+Existe a possibilidade de extensão do modelo para que ele permita: comparar
+diferentes versões de um sistema;
+realizar gerência de conhecimento;
+rastrear requisitos;
+análisar vários aspectos de qualidade;
+verificar cobertura de cóodigo;
+engenharia de software colaborativa;
+auxiliar a gerência de projetos;
+e outras muitas possibilidades. 
+
+É necessário que se faça um estudo detalhado referente aos parâmetros do modelo,
+tanto na valorização de componetes e ligações, quanto na renderização das redes.
+Esse estudo pode abordar ainda o uso de diferente séries numéricas para tal
+valoração.
+Outro ponto de estudo referente ao modelo é quanto aos métodos de posicionamento
+inicial de componentes, uma vez que o método proposto neste trabalho não se
+preocupa com minimizar a energia potencial do sistema, ou utilizar o espaço de
+forma eficiente, mas apenas para evitar interpenetrações severas nas primeiras
+iterações da simulação de forças.
+
+%Algumas das propriedades topológicas das redes: se são redes de mundo pequeno e
+%livres de escala, coeficiente de clusterização, e outras.
+%Quanto às métricas extraídas das redes, pode-se saber a distribuição de ligações
+%por componentes, relação entre ligações de entrada e de saída, coeficiente de
+%clusterização, métricas diversas de centralidade, dentre outras mais. Pode-se
+%ainda extrair relações entre as métricas estabelecidas na Engenharia de Software
+%e na Teoria de Redes.
 
 %Também deve indicar, se possível e/ou conveniente, como este trabalho pode ser
 %estendido ou aprimorado.
@@ -50,5 +86,36 @@ desenvolvimento nomeada gulp.
 \section{Considerações Finais}
 \label{sec:FinalConsiderations}
 
-\textit{Parte do que for debatido nos resultados do estudo de caso. Falta
-escrever.}
+O modelo proposto possui limitações. Não apenas por se fazer valer de técnicas
+híbridas de análise de sistemas de software, mas porque sua representação não
+captura certas características de uma realidade mais complexa. Ora porque as
+operações de redução espacial e temporal retiram parte da informação presente
+nas trilhas de execuções instrumentadas; ora porque o modelo --- como definido
+--- não é capaz de representar certos cenários. Nosso estudo de caso mostrou
+que o modelo representa uma função definida no escopo de outra função como se
+definida em um arquivo.
+
+Se retomarmos as perguntas de pesquisa realizadas no começo deste texto, podemos
+notar que ainda não temos todas as repostas.
+É possível afirmar positivamente às perguntas de pesquisa \texttt{\#1} e
+\texttt{\#3} (parcialmente), uma vez que modelamos a rede tal como proposto e ela
+se mostrou extensível ao passo em que muito do que descrevemos na metodologia
+não fazia parte da proposta inicial de trabalho.
+A pergunta de pesquisa \texttt{\#2} ainda permanece sem resposta, uma vez que o
+único sistema avaliado até o momento é de pequeno porte e a renderização
+simulada não foi efetuada.
+
+Para finalizarmos este trabalho ainda se mostra necessário: fundamentar os
+conceitos utilizados; implementar ferramenta para extrair trilhas de execução de
+sistemas em análise; implementar ferramenta para renderizar redes de tais
+sistemas; realizar estudos de caso em número considerável de aplicações; 
+discutir resultados encontrados.
+
+%\begin{itemize}
+%	\item Fundamentar os conceitos utilizados;
+%	\item Implementar ferramenta para extrair trilhas de execução de sistemas em
+%	análise;
+%	\item Implementar ferramenta para renderizar redes de tais sistemas;
+%	\item Realizar estudos de caso em número considerável de aplicações;
+%	\item Discutir resultados encontrados.
+%\end{itemize}
